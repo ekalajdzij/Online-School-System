@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Emir\\source\\repos\\Online-School-System\\SchoolSystemAPI\\SystemAPI\\SystemAPI\\SystemAPI.csproj": {}
+    "C:\\Users\\Emir\\source\\repos\\ekalajdzij\\Online-School-System\\SystemAPI\\SystemAPI\\SystemAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Emir\\source\\repos\\Online-School-System\\SchoolSystemAPI\\SystemAPI\\SystemAPI\\SystemAPI.csproj": {
+    "C:\\Users\\Emir\\source\\repos\\ekalajdzij\\Online-School-System\\SystemAPI\\SystemAPI\\SystemAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Emir\\source\\repos\\Online-School-System\\SchoolSystemAPI\\SystemAPI\\SystemAPI\\SystemAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Emir\\source\\repos\\ekalajdzij\\Online-School-System\\SystemAPI\\SystemAPI\\SystemAPI.csproj",
         "projectName": "SystemAPI",
-        "projectPath": "C:\\Users\\Emir\\source\\repos\\Online-School-System\\SchoolSystemAPI\\SystemAPI\\SystemAPI\\SystemAPI.csproj",
+        "projectPath": "C:\\Users\\Emir\\source\\repos\\ekalajdzij\\Online-School-System\\SystemAPI\\SystemAPI\\SystemAPI.csproj",
         "packagesPath": "C:\\Users\\Emir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Emir\\source\\repos\\Online-School-System\\SchoolSystemAPI\\SystemAPI\\SystemAPI\\obj\\",
+        "outputPath": "C:\\Users\\Emir\\source\\repos\\ekalajdzij\\Online-School-System\\SystemAPI\\SystemAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Emir\\AppData\\Roaming\\NuGet\\NuGet.Config",

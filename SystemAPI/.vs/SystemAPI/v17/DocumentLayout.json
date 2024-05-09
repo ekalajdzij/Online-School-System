@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Emir\\source\\repos\\Online-School-System\\SchoolSystemAPI\\SystemAPI\\",
+  "WorkspaceRootPath": "C:\\Users\\Emir\\source\\repos\\ekalajdzij\\Online-School-System\\SystemAPI\\",
   "Documents": [],
   "DocumentGroupContainers": [
     {
@@ -22,6 +22,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
             }
           ]
         }
