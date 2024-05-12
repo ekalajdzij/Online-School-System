@@ -8,3 +8,11 @@
 /.vs
 /SystemAPI/SystemAPI/obj/Debug/net8.0/SystemAPI.AssemblyInfoInputs.cache
 /SystemAPI/SystemAPI/obj/Debug/net8.0/SystemAPI.AssemblyInfo.cs
+/SystemAPI/SystemAPI/obj/SystemAPI.csproj.nuget.g.targets
+/SystemAPI/SystemAPI/obj/project.nuget.cache
+/SystemAPI/SystemAPI/obj/SystemAPI.csproj.nuget.dgspec.json
+/SystemAPI/SystemAPI/obj/SystemAPI.csproj.nuget.g.props
+/SystemAPI/SystemAPI/obj/project.assets.json
+/SystemAPI/SystemAPI/obj/Debug/net8.0/SystemAPI.GeneratedMSBuildEditorConfig.editorconfig
+/SystemAPI/SystemAPI/obj/Debug/net8.0/SystemAPI.csproj.AssemblyReference.cache
+/SystemAPI/SystemAPI/obj/Debug/net8.0/SystemAPI.assets.cache
