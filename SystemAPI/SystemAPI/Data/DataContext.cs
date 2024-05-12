@@ -17,5 +17,6 @@ namespace SystemAPI.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Submission> Submissions { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Assistant> Assistants { get; set; } 
     }
 }

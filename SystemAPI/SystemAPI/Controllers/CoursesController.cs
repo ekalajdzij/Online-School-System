@@ -7,11 +7,11 @@ namespace SchoolSystemAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class CoursesController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public CourseController(DataContext context)
+        public CoursesController(DataContext context)
         {
             _context = context;
         }
