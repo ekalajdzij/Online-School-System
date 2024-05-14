@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SystemAPI.Models
+namespace SchoolSystemAPI.Dtos
 {
-    public class Course
+    public class CourseUpdateRequest
     {
-        [Key]
-        public int Id { get; set; }
         public string? Name { get; set; }
         public string? Overview { get; set; }
         public string? Summary { get; set; }
@@ -14,7 +11,5 @@ namespace SystemAPI.Models
         public int? ProfessorId { get; set; }
         [ForeignKey("Assistant")]
         public int? AssistantId { get; set; }
-
-
     }
 }
