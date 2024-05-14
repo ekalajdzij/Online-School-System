@@ -16,3 +16,8 @@
 /SystemAPI/SystemAPI/obj/Debug/net8.0/SystemAPI.GeneratedMSBuildEditorConfig.editorconfig
 /SystemAPI/SystemAPI/obj/Debug/net8.0/SystemAPI.csproj.AssemblyReference.cache
 /SystemAPI/SystemAPI/obj/Debug/net8.0/SystemAPI.assets.cache
+/SystemAPI/SystemAPI/Migrations/DataContextModelSnapshot.cs
+/SystemAPI/SystemAPI/Migrations/20240514104715_SecretKeyDbUpdate.Designer.cs
+/SystemAPI/SystemAPI/Migrations/20240514104715_SecretKeyDbUpdate.cs
+/SystemAPI/SystemAPI/Migrations/20240514101422_UniqueConstraintDbUpdate.Designer.cs
+/SystemAPI/SystemAPI/Migrations/20240514101422_UniqueConstraintDbUpdate.cs
