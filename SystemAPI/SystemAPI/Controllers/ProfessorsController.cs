@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
+using SchoolSystemAPI.Dtos;
 using SchoolSystemAPI.Factories;
+using SchoolSystemAPI.Services;
 using SystemAPI.Data;
 
 namespace SchoolSystemAPI.Controllers
@@ -62,6 +64,27 @@ namespace SchoolSystemAPI.Controllers
 
             var obj = _professorFactory.CreateProfessor(user, professor);
             return Ok(obj);
+        }
+
+        [HttpPut("profile")]
+        public async Task<IActionResult> UpdateProfessorProfile(int professorId, UserUpdateRequest payload)
+        {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
+            var professor = await _context.Users.FirstOrDefaultAsync(u => u.Id == professorId);
+            if (professor == null) return NotFound("Professor not found!");
+            if (payload.Username != null) professor.Username = payload.Username;
+            if (payload.Password != null)
+            {
+                professor.Password = HashService.GetSha256Hash(payload.Password);
+            }
+
+            _context.Users.Update(professor);
+            await _context.SaveChangesAsync();
+
+            return Ok(professor);
         }
 
 

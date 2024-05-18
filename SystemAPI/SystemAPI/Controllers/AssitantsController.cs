@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.Json;
+using SchoolSystemAPI.Dtos;
 using SchoolSystemAPI.Factories;
+using SchoolSystemAPI.Services;
 using System.Runtime.CompilerServices;
 using SystemAPI.Data;
 using SystemAPI.Models;
@@ -67,10 +69,25 @@ namespace SchoolSystemAPI.Controllers
             return Ok(obj);
         }
 
-       
+        [HttpPut("profile")]
+        public async Task<IActionResult> UpdateAssistantProfile(int assistantId, UserUpdateRequest payload)
+        {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
 
+            var ass = await _context.Users.FirstOrDefaultAsync(u => u.Id == assistantId);
+            if (ass == null) return NotFound("Assistant not found!");
+            if (payload.Username != null) ass.Username = payload.Username;
+            if (payload.Password != null)
+            {
+                ass.Password = HashService.GetSha256Hash(payload.Password);
+            }
 
+            _context.Users.Update(ass);
+            await _context.SaveChangesAsync();
 
-
+            return Ok(ass);
+        }
     }
 }

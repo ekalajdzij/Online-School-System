@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using SchoolSystemAPI.Dtos;
 using SchoolSystemAPI.Factories;
 using SchoolSystemAPI.Services;
 using SystemAPI.Data;
@@ -95,6 +96,27 @@ namespace SchoolSystemAPI.Controllers
             _context.SaveChanges();
 
             return Ok("Student enrolled in course successfully!");
+        }
+
+        [HttpPut("profile")]
+        public async Task<IActionResult> UpdateStudentProfile(int studentId, UserUpdateRequest payload)
+        {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
+            var student = await _context.Users.FirstOrDefaultAsync(u => u.Id == studentId);
+            if (student == null) return NotFound("Student not found!");
+            if (payload.Username != null) student.Username = payload.Username;
+            if (payload.Password != null)
+            {
+                student.Password = HashService.GetSha256Hash(payload.Password);
+            }
+
+            _context.Users.Update(student);
+            await _context.SaveChangesAsync();
+
+            return Ok(student);
         }
 
 
