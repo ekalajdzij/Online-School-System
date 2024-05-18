@@ -23,3 +23,7 @@
 /SystemAPI/SystemAPI/Migrations/20240514104715_SecretKeyDbUpdate.cs
 /SystemAPI/SystemAPI/Migrations/20240514101422_UniqueConstraintDbUpdate.Designer.cs
 /SystemAPI/SystemAPI/Migrations/20240514101422_UniqueConstraintDbUpdate.cs
+/SystemAPI/SystemAPI/.config
+/SystemAPI/SystemAPI/Properties/ServiceDependencies/local
+/SystemAPI/SystemAPI/Properties/serviceDependencies.json
+/SystemAPI/SystemAPI/Properties
