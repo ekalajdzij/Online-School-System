@@ -17,6 +17,16 @@ namespace SystemAPI.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Submission> Submissions { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Assistant> Assistants { get; set; } 
+        public DbSet<Assistant> Assistants { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Mail)
+                .IsUnique();
+        }
     }
 }

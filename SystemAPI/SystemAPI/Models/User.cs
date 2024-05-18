@@ -12,7 +12,8 @@ namespace SystemAPI.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string? SecretKey { get; set; }
+        [NotMapped]
+        public string? Token { get; set; }
         public string Name { get; set; }
         public string Mail { get; set; }
         public Boolean? IsAdmin { get; set; }

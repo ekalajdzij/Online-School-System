@@ -16,6 +16,7 @@ namespace SchoolSystemAPI.Factories
         {
             return new
             {
+                Id = user.Id,
                 Username = user.Username,
                 Password = user.Password,
                 Name = user.Name,

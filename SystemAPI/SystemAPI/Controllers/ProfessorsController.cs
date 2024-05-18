@@ -13,16 +13,22 @@ namespace SchoolSystemAPI.Controllers
     {
         private readonly DataContext _context;
         private readonly IProfessorAbstractFactory _professorFactory;
+        private readonly IConfiguration _configuration;
 
-        public ProfessorsController(DataContext context, IProfessorAbstractFactory professorFactory)
+        public ProfessorsController(DataContext context, IProfessorAbstractFactory professorFactory, IConfiguration configuration)
         {
             _context = context;
             _professorFactory = professorFactory;
+            _configuration = configuration;
         }
 
         [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<object>>> GetAllProfessors()
         {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             var professors = await _context.Professors.ToListAsync();
             if (professors == null) return NotFound("Professors not found!");
 
@@ -44,6 +50,10 @@ namespace SchoolSystemAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<object>>> GetProfessor(int id)
         {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             var professor = await _context.Professors.FirstOrDefaultAsync(p => p.Id == id);
             if (professor == null) return NotFound("Professor with the given id Not Found!");
 

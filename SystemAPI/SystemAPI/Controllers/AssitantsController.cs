@@ -15,16 +15,22 @@ namespace SchoolSystemAPI.Controllers
     {
         private readonly DataContext _context;
         private readonly IAssistantAbstractFactory _assistantFactory;
+        private readonly IConfiguration _configuration;
 
-        public AssitantsController(DataContext context, IAssistantAbstractFactory assistantFactory)
+        public AssitantsController(DataContext context, IAssistantAbstractFactory assistantFactory, IConfiguration configuration)
         {
             _context = context;
             _assistantFactory = assistantFactory;
+            _configuration = configuration;
         }
 
         [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<object>>> GetAllAssistants()
         {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             var assistants = await _context.Assistants.ToListAsync();
             if (assistants == null) return NotFound("Assistants not found!");
 
@@ -47,6 +53,10 @@ namespace SchoolSystemAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<object>>> GetAssistant(int id)
         {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             var assistant = await _context.Assistants.FirstOrDefaultAsync(a => a.Id == id);
             if (assistant == null) return NotFound("Assistant with the given id Not Found!");
 

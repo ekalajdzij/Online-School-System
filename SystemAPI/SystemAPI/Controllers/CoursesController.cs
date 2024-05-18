@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolSystemAPI.Dtos;
+using SchoolSystemAPI.Services;
 using SystemAPI.Data;
 using SystemAPI.Models;
 
@@ -12,17 +13,24 @@ namespace SchoolSystemAPI.Controllers
     public class CoursesController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly IConfiguration _configuration;
 
-        public CoursesController(DataContext context)
+        public CoursesController(DataContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
 
         [HttpGet("all")]
         public async Task<IActionResult> GetCourses()
         {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             var courses = await _context.Courses.ToListAsync();
+     
             return Ok(courses);
         }
 
@@ -30,7 +38,13 @@ namespace SchoolSystemAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCourse(int id)
         {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
+            if (course == null) return NotFound($"The course with the given {id} does not exist!");
+            
             return Ok(course);
         }
 
@@ -38,11 +52,14 @@ namespace SchoolSystemAPI.Controllers
         [HttpPost("course")]
         public async Task<IActionResult> AddCourse(CourseUpdateRequest course)
         {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
             var newCourse = new Course
             {
                 Name = course.Name,
@@ -54,14 +71,17 @@ namespace SchoolSystemAPI.Controllers
             _context.Courses.Add(newCourse);
             await _context.SaveChangesAsync();
 
-            return Ok(course);
+            return Ok(newCourse);
         }
 
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCourse(int id, CourseUpdateRequest course)
         {
-           
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+             var key = _configuration.GetSection("Jwt:Key").Value;
+             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             var existingCourse = await _context.Courses.FindAsync(id);
             if (existingCourse == null)
             {
@@ -84,22 +104,24 @@ namespace SchoolSystemAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
+            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+
             var course = await _context.Courses.FindAsync(id);
-            if (course == null)
+            if (course == null) return NotFound("Course not found!");
+
+            var materials = _context.Materials.Where(m => m.CourseId == id).ToList();
+            if (materials.Any())
             {
-                return NotFound("Course not found.");
-            }
+                _context.Materials.RemoveRange(materials);
+                await _context.SaveChangesAsync();
+            } 
 
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
 
             return Ok($"Course with the id {id} deleted successfully!");
         }
-
-
-
-
-
-
     }
 }

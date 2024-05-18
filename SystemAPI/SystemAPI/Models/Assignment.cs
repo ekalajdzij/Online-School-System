@@ -13,6 +13,7 @@ namespace SystemAPI.Models
         public int CourseId { get; set; }
         [ForeignKey("Assistant")]
         public int AssistantId { get; set;}
+        public DateTime? Deadline { get; set; }
         public string? Name { get; set; }
         public string? FileAssignment { get; set; }
 
