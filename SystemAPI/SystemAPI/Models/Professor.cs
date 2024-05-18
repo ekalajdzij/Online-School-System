@@ -7,7 +7,7 @@ namespace SystemAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string? Title { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
     }
