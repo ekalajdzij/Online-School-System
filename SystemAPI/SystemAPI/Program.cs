@@ -49,6 +49,14 @@ builder.Services.AddScoped<IAssistantAbstractFactory, AssistantAbstractFactory>(
 builder.Services.AddScoped<IProfessorAbstractFactory, ProfessorAbstractFactory>();
 builder.Services.AddScoped<IStudentAbstractFactory, StudentAbstractFactory>();
 
+//Singleton pattern for BlobStorageService
+builder.Services.AddSingleton<BlobStorageService>(provider =>
+{
+    var configuration = provider.GetRequiredService<IConfiguration>();
+    var logger = provider.GetRequiredService<ILogger<BlobStorageService>>();
+    return BlobStorageService.GetInstance(configuration, logger);
+});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", buildOptions =>

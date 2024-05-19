@@ -5,14 +5,33 @@ namespace SchoolSystemAPI.Services
 {
     public class BlobStorageService : IBlobStorageService
     {
+        private static BlobStorageService _instance;
+        private static readonly object _lock = new object();
         private readonly IConfiguration _configuration;
         private readonly ILogger<BlobStorageService> _logger;
         string blobStorageconnection = string.Empty;
         private string blobContainerName = "storage";
-        public BlobStorageService(string connectionstring)
+        public BlobStorageService(IConfiguration configuration, ILogger<BlobStorageService> logger)
         {
-            blobStorageconnection = connectionstring;
+            _configuration = configuration;
+            _logger = logger;
+            blobStorageconnection = _configuration["AzureStorage"];
         }
+        public static BlobStorageService GetInstance(IConfiguration configuration, ILogger<BlobStorageService> logger)
+        {
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new BlobStorageService(configuration, logger);
+                    }
+                }
+            }
+            return _instance;
+        }
+
         public async Task<string> UploadFileToBlobAsync(string strFileName, string contentType, Stream fileStream)
         {
             try
