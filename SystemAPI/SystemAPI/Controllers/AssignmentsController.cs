@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolSystemAPI.Dtos;
+using SchoolSystemAPI.Services;
 using SystemAPI.Data;
 using SystemAPI.Models;
 
@@ -21,11 +23,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> GetAllAssignments()
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); 
 
             var assignments = await _context.Assignments
                 .GroupBy(a => new {a.CourseId, a.Name, a.FileAssignment, a.Deadline })
@@ -44,11 +47,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> GetAssignmentById(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var assignment = await _context.Assignments.FirstOrDefaultAsync(a => a.Id == id);
             if (assignment == null) return NotFound("Assignment not found!");
@@ -57,11 +61,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPost("assignment")]
+        [Authorize(Policy = "ProfessorOrAssistantOrAdmin")]
         public async Task<IActionResult> CreateAssignment(AssignmentRequest assignment)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             if (!ModelState.IsValid) return BadRequest("Invalid model state!");
 
@@ -108,11 +113,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> UpdateAssignment(int id, AssignmentUpdateRequest assignmentUpdate)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             if (!ModelState.IsValid)
             {
@@ -143,11 +149,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrAdmin")]
         public async Task<IActionResult> DeleteAssignment(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var assignment = await _context.Assignments.FindAsync(id);
             if (assignment == null)
@@ -169,11 +176,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("submissions/{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrAdmin")]
         public async Task<IActionResult> GetAssignmentSubmissions(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); 
 
             var submissions = await _context.Submissions
                 .Where(s => s.AssignmentId == id)

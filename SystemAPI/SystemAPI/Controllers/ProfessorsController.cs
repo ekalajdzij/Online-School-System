@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
@@ -25,11 +26,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<ActionResult<IEnumerable<object>>> GetAllProfessors()
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var professors = await _context.Professors.ToListAsync();
             if (professors == null) return NotFound("Professors not found!");
@@ -50,11 +52,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<ActionResult<IEnumerable<object>>> GetProfessor(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var professor = await _context.Professors.FirstOrDefaultAsync(p => p.Id == id);
             if (professor == null) return NotFound("Professor with the given id Not Found!");
@@ -67,11 +70,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPut("profile")]
+        [Authorize(Policy = "ProfessorOrAdmin")]
         public async Task<IActionResult> UpdateProfessorProfile(int professorId, UserUpdateRequest payload)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var professor = await _context.Users.FirstOrDefaultAsync(u => u.Id == professorId);
             if (professor == null) return NotFound("Professor not found!");

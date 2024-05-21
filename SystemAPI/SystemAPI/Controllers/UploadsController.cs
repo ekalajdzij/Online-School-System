@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolSystemAPI.Services;
@@ -23,11 +24,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPost("upload")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> UploadFile(IFormFile file, int userId, int assignmentId)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             if (file == null || file.Length == 0)
             {

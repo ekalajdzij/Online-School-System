@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolSystemAPI.Dtos;
@@ -22,11 +23,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> GetMaterials()
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var courses = await _context.Materials.ToListAsync();
 
@@ -34,11 +36,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> GetMaterial(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var material = await _context.Materials.FirstOrDefaultAsync(m => m.Id == id);
             if (material == null) return NotFound($"The material with the given {id} does not exist!");
@@ -47,11 +50,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrAdmin")]
         public async Task<IActionResult> UpdateMaterial(int id, MaterialUpdateRequest material)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var existingMaterial = await _context.Materials.FirstOrDefaultAsync(m => m.Id == id);
             if (existingMaterial == null) return NotFound("Material does not exist!");
@@ -63,11 +67,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPost("material")]
+        [Authorize(Policy = "ProfessorOrAssistantOrAdmin")]
         public async Task<IActionResult> AddMaterial(MaterialUpdateRequest material)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             if (!ModelState.IsValid)
             {
@@ -84,11 +89,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrAdmin")]
         public async Task<IActionResult> DeleteMaterial(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var material = await _context.Materials.FindAsync(id);
             if (material == null) return NotFound("Material not found!");

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -27,11 +28,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<ActionResult<IEnumerable<object>>> GetAllStudents()
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var students = await _context.Students.ToListAsync();
             if (students == null) return NotFound("Students not found!");
@@ -55,11 +57,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<ActionResult<IEnumerable<object>>> GetStudent(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == id);
             if (student == null) return NotFound("Student with the given id Not Found!");
@@ -72,11 +75,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPut("enroll")]
+        [Authorize(Policy = "StudentOrAdmin")]
         public async Task<ActionResult> EnrollStudent(int studentId, int courseId)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == studentId);
             if (student == null) return NotFound("Student with the given id Not Found!");
@@ -99,11 +103,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPut("profile")]
+        [Authorize(Policy = "StudentOrAdmin")]
         public async Task<IActionResult> UpdateStudentProfile(int studentId, UserUpdateRequest payload)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var student = await _context.Users.FirstOrDefaultAsync(u => u.Id == studentId);
             if (student == null) return NotFound("Student not found!");

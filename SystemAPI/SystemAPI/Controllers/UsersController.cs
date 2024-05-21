@@ -7,6 +7,7 @@ using SystemAPI.Data;
 using SchoolSystemAPI.Services;
 using Azure.Security.KeyVault.Certificates;
 using SystemAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SchoolSystemAPI.Controllers
 {
@@ -24,6 +25,7 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(UserLoginRequest payload)
         {
             var hashedPassword = HashService.GetSha256Hash(payload.Password);
@@ -48,44 +50,48 @@ namespace SchoolSystemAPI.Controllers
 
 
         [HttpGet("all")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> GetUsers()
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); 
 
             var users = await _context.Users.ToListAsync();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> GetUser(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); 
 
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             return Ok(user);
         }
 
         [HttpGet("admin")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetAdmin()
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var user = await _context.Users.FirstOrDefaultAsync(x => x.IsAdmin == true);
             return Ok(user);
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> UpdateUser(int id, AdminUserUpdateRequest payload)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             if (user == null) return NotFound("User not found!");
@@ -105,7 +111,6 @@ namespace SchoolSystemAPI.Controllers
 
             if (!professorExists && !assistantExists && !studentExists)
             {
-                // User does not exist in any of the tables, create a new one
                 if (user.IsProfessor == true)
                 {
                     _context.Professors.Add(new Professor { UserId = user.Id });
@@ -125,11 +130,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> CreateUser(AdminUserUpdateRequest payload)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var user = new User
             {
@@ -165,11 +171,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key); */
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             if (user == null) return NotFound("User not found!");

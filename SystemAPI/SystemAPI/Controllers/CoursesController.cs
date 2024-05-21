@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolSystemAPI.Dtos;
@@ -23,11 +24,12 @@ namespace SchoolSystemAPI.Controllers
 
 
         [HttpGet("all")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> GetCourses()
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var courses = await _context.Courses.ToListAsync();
      
@@ -36,11 +38,12 @@ namespace SchoolSystemAPI.Controllers
 
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<IActionResult> GetCourse(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
             if (course == null) return NotFound($"The course with the given {id} does not exist!");
@@ -50,11 +53,12 @@ namespace SchoolSystemAPI.Controllers
 
 
         [HttpPost("course")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> AddCourse(CourseUpdateRequest course)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             if (!ModelState.IsValid)
             {
@@ -76,11 +80,12 @@ namespace SchoolSystemAPI.Controllers
 
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> UpdateCourse(int id, CourseUpdateRequest course)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
-             var key = _configuration.GetSection("Jwt:Key").Value;
-             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var existingCourse = await _context.Courses.FindAsync(id);
             if (existingCourse == null)
@@ -102,11 +107,12 @@ namespace SchoolSystemAPI.Controllers
 
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var course = await _context.Courses.FindAsync(id);
             if (course == null) return NotFound("Course not found!");

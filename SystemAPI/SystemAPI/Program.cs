@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using SchoolSystemAPI.Factories;
 using SystemAPI.Data;
@@ -31,6 +30,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("ProfessorOrAssistantOrAdmin", policy => policy.RequireRole("Professor", "Assistant", "Admin"));
+    options.AddPolicy("ProfessorOrAssistantOrStudentOrAdmin", policy => policy.RequireRole("Professor", "Assistant", "Student", "Admin"));
+    options.AddPolicy("ProfessorOrAssistant", policy => policy.RequireRole("Professor", "Assistant"));
+    options.AddPolicy("StudentOrAdmin", policy => policy.RequireRole("Student", "Admin"));
+    options.AddPolicy("AssistantOrAdmin", policy => policy.RequireRole("Asistant", "Admin"));
+    options.AddPolicy("ProfessorOrAdmin", policy => policy.RequireRole("Professor", "Admin"));
+});
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

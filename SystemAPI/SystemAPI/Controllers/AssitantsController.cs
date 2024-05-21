@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.Json;
@@ -27,11 +28,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<ActionResult<IEnumerable<object>>> GetAllAssistants()
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var assistants = await _context.Assistants.ToListAsync();
             if (assistants == null) return NotFound("Assistants not found!");
@@ -53,11 +55,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
         public async Task<ActionResult<IEnumerable<object>>> GetAssistant(int id)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var assistant = await _context.Assistants.FirstOrDefaultAsync(a => a.Id == id);
             if (assistant == null) return NotFound("Assistant with the given id Not Found!");
@@ -70,11 +73,12 @@ namespace SchoolSystemAPI.Controllers
         }
 
         [HttpPut("profile")]
+        [Authorize(Policy = "AssistantOrAdmin")]
         public async Task<IActionResult> UpdateAssistantProfile(int assistantId, UserUpdateRequest payload)
         {
-            /*var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
-            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);*/
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var ass = await _context.Users.FirstOrDefaultAsync(u => u.Id == assistantId);
             if (ass == null) return NotFound("Assistant not found!");
