@@ -9,7 +9,6 @@ using Microsoft.Extensions.Azure;
 using SchoolSystemAPI.Services;
 using Microsoft.Identity.Web;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options =>
@@ -54,8 +53,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = jwtIssuer,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
-    })
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+    });
 
 builder.Services.AddAuthorization(options =>
 {
