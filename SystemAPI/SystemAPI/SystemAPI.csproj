@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>SchoolSystemAPI</RootNamespace>
     <UserSecretsId>c2fd1899-567d-467d-a74f-e036160039a1</UserSecretsId>
+	<SelfContained>false</SelfContained>
   </PropertyGroup>
 
   <ItemGroup>
