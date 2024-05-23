@@ -27,3 +27,6 @@
 /SystemAPI/SystemAPI/Properties/ServiceDependencies/local
 /SystemAPI/SystemAPI/Properties/serviceDependencies.json
 /SystemAPI/SystemAPI/Properties
+/client-app/client-app/.vs/client-app
+/client-app/client-app/client-app/.vscode
+/client-app/client-app/client-app/obj/Debug
