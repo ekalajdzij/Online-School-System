@@ -1,0 +1,34 @@
+<div *ngIf="showLoginPage;">
+  <router-outlet></router-outlet>
+</div>
+
+<nav *ngIf="!showLoginPage">
+  <div class="heading">HomePage</div>
+  <span class="sideMenuButton" (click)="openNavbar()"></span>
+  <div class="navbar">
+    <ul>
+      <li>
+        <button (click)="navigateToLogin()" class="login-button">Login</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div *ngIf="!showLoginPage" class="sideNavigationBar" id="sideNavigationBar">
+  <a href="#" class="closeButton" (click)="closeNavbar()"></a>
+  <a href="#">Home</a>
+  <button (click)="navigateToLogin()" class="login-button">Login</button>
+</div>
+<div *ngIf="!showLoginPage" class="line" id="Home">
+  <div class="side1">
+    <h1>EduSphere</h1>
+    <p>Welcome to EduSphere, your platform for better education!</p>
+  </div>
+  <div class="side2">
+    <img src="https://nces.ed.gov/images/homepage/coe.jpg" width="500">
+  </div>
+</div>
+<footer *ngIf="!showLoginPage">
+  <div class="footer">
+    <!-- Footer content -->
+  </div>
+</footer>
