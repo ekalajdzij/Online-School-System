@@ -1,0 +1,62 @@
+name: Build and deploy ASP.Net Core app to Azure Web App - schoolsystemedusphereapi
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.x'
+          include-prerelease: true
+
+      - name: Build with dotnet
+        run: dotnet build SystemAPI/SystemAPI.sln --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish SystemAPI/SystemAPI.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: .net-app
+      
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_88D5CCC7830D445D98A180F5FA9ABBF9 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2EBBA72A37834694B854952EB3E831DE }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1F9E5F4563694113AC20BFEC0B68B9C6 }}
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'schoolsystemedusphereapi'
+          slot-name: 'Production'
+          package: .
