@@ -59,11 +59,11 @@ namespace SchoolSystemAPI.Controllers
             var key = _configuration.GetSection("Jwt:Key").Value;
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
-            var professor = await _context.Professors.FirstOrDefaultAsync(p => p.Id == id);
-            if (professor == null) return NotFound("Professor with the given id Not Found!");
-
-            var user = await _context.Users.FindAsync(professor.UserId);
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);
             if (user == null) return NotFound("Professor with the given id Not Found!");
+
+            var professor = await _context.Professors.FirstOrDefaultAsync(p => p.UserId == id);
+            if (professor == null) return NotFound("Professor with the given id Not Found!");
 
             var obj = _professorFactory.CreateProfessor(user, professor);
             return Ok(obj);
