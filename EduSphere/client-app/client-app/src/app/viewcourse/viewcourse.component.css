@@ -120,38 +120,19 @@
     font-size: 18px;
     color: #6c757d;
 }
-
-.modal-header, .modal-footer {
-    background-color: #f8f9fa;
-}
-
-.modal-title {
-    font-size: 18px;
-    color: #343a40;
-}
-
-.modal-body {
-    font-size: 16px;
-    color: #6c757d;
-}
-
-.modal-footer .btn {
-    border-radius: 4px;
-    padding: 8px 16px;
-}
-
-.modal-footer .btn-success {
-    background-color: #28a745;
-    color: white;
+.modal-footer .btn-primary {
+    background-color: #0074D9 !important;
+    color: white !important;
 }
 
 .modal-footer .btn-outline-secondary {
-    background-color: transparent;
-    border: 1px solid #6c757d;
-    color: #6c757d;
+    background-color: transparent !important;
+    border: 1px solid #6c757d !important;
+    color: #6c757d !important;
 }
 
 .modal-footer .btn-outline-secondary:hover {
-    background-color: #6c757d;
-    color: white;
+    background-color: #6c757d !important;
+    color: white !important;
 }
+  

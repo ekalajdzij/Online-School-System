@@ -12,17 +12,16 @@ import { forkJoin } from 'rxjs'
   selector: 'ng-modal-confirm',
   template: `
     <div class="modal-header">
-      <h5 class="modal-title" id="modal-title">Delete Confirmation</h5>
-      <button type="button" class="btn close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true"></span>
+      <h4 class="modal-title" id="modal-title">Confirm Deletion</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       </button>
     </div>
     <div class="modal-body">
-      <p>Are you sure you want to delete?</p>
+      Are you sure you want to delete this course?
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">CANCEL</button>
-      <button type="button" ngbAutofocus class="btn btn-success" (click)="modal.close('Ok click')">OK</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('delete')">Delete</button>
+      <button type="button" class="btn btn-primary" (click)="modal.dismiss()">Cancel</button>
     </div>
   `,
 })
@@ -131,15 +130,16 @@ export class ViewCourseComponent implements OnInit {
     ).subscribe();
   }
 
-  openDeleteModal(courseId: number): void {
-    const modalRef = this.modalService.open(MODALS['deleteModal']);
+  openDeleteModal(id: number): void {
+    const modalRef = this.modalService.open(NgModalConfirm, { backdrop: false });
     modalRef.result.then(
-      (result: any) => {
-        if (result == 'Ok click') {
-          this.deleteCourse(courseId);
+      (result) => {
+        if (result === 'delete') {
+          this.deleteCourse(id);
+          this.router.navigate([this.router.url]);
         }
       },
-      (reason: any) => {
+      (reason) => {
         this.toastr.info('Delete cancelled', 'Info');
       }
     );
