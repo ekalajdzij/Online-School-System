@@ -1,0 +1,157 @@
+/* Ensure to include FontAwesome to use its icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
+
+.container-l .btn {
+  /* Add your specific blue color here */
+  color: #0074D9; /* Replace with your desired blue color */
+  font-size: 16px; /* Adjust size as needed */
+}
+
+.container-l .btn .fas,
+.container-l .btn .fa {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+/* Additional styles to match your UI may be necessary */
+/* Additional styles to match your UI may be necessary */
+
+.table-title .btn {
+    margin-left: auto; /* Move the button to the right */
+  }
+.table-title .btn-outline-secondary {
+    width: 100px; /* Set a fixed width for both buttons */
+  }
+
+:host {
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.container-xl {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.table-title {
+    background-color: #0d6efd;
+    color: white;
+    padding: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.table-title h4 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.table-title .btn {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.table-title .btn .fas {
+    margin-right: 5px;
+}
+
+.table {
+    margin: 0;
+}
+
+.table thead {
+    background-color: #e9ecef;
+}
+
+.table th {
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.table td {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.table td .btn {
+    background-color: transparent;
+    border: none;
+    color: #0d6efd;
+    font-size: 18px;
+}
+
+.table td .btn:hover {
+    color: #0056b3;
+}
+
+.table td .fa-trash-alt {
+    color: #dc3545;
+}
+
+.table td .fa-trash-alt:hover {
+    color: #bd2130;
+}
+
+.table td a {
+    text-decoration: none;
+}
+
+.no-courses {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #6c757d;
+}
+
+.modal-header, .modal-footer {
+    background-color: #f8f9fa;
+}
+
+.modal-title {
+    font-size: 18px;
+    color: #343a40;
+}
+
+.modal-body {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.modal-footer .btn {
+    border-radius: 4px;
+    padding: 8px 16px;
+}
+
+.modal-footer .btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.modal-footer .btn-outline-secondary {
+    background-color: transparent;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+}
+
+.modal-footer .btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+}
