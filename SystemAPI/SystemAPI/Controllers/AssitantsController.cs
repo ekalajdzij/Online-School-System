@@ -62,11 +62,11 @@ namespace SchoolSystemAPI.Controllers
             var key = _configuration.GetSection("Jwt:Key").Value;
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
-            var assistant = await _context.Assistants.FirstOrDefaultAsync(a => a.Id == id);
-            if (assistant == null) return NotFound("Assistant with the given id Not Found!");
-
-            var user = await _context.Users.FindAsync(assistant.UserId);
+            var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
             if (user == null) return NotFound("Assistant with the given id Not Found!");
+
+            var assistant = await _context.Assistants.FirstOrDefaultAsync(a => a.UserId == id);
+            if (assistant == null) return NotFound("Assistant with the given id Not Found!");
 
             var obj = _assistantFactory.CreateAssistant(user, assistant);
             return Ok(obj);
