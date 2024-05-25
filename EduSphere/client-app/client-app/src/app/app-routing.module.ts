@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { AnsambleComponent } from './ansamble/ansamble.component';
 import { StudentComponent } from './student/student.component';
+import { LandingPageComponent } from './landingpage/landingpage.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginpageComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'student', component: StudentComponent },

@@ -1,0 +1,120 @@
+:host {
+    height: 100vh;
+    display: flex;
+    width: 250px;
+    background-color: #0d6efd;
+    box-sizing: border-box;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bg-primary {
+    background-color: #0d6efd !important;
+}
+
+.logo-container {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    margin-top: 5px;
+    align-items: center;
+    margin-left:60px;
+
+    svg {
+        width: 30px;
+        height: 30px;
+        fill: white;
+    }
+    h1 {
+        margin-top: 25px;
+        margin-left: 0px;
+        color: white;
+        font-size: 34px;
+        font-weight: bold;
+    }
+
+    p {
+        margin-left: 0px;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.menu {
+    gap: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    font-size: 15px;
+
+    .menu-title {
+        font-size: 32px;
+        margin-left:25px;
+        color: white;
+        font-weight: bold;
+    }
+}
+
+.sidebar-link {
+    align-self: center;
+    text-decoration: none;
+
+    .sidebar-item {
+        width: 180px;
+        height: 40px;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+
+        svg {
+            margin-left: 10px;
+            width: 20px;
+            height: 30px;
+            fill: white;
+        }
+
+        p {
+            margin-left: 10px;
+            color: white;
+        }
+    }
+
+    .sidebar-item:hover {
+        background-color: #0d6efd;
+    }
+}
+.sidebar-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.sidebar-content svg {
+    margin-right: 10px;
+    width: 20px;
+    height: 30px;
+    fill: white;
+}
+
+.sidebar-content p {
+    margin: 0;
+    color: white;
+}
+
+.active {
+    .sidebar-item {
+        background-color: #2a944d;
+    }
+}
+
+#logout-link {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 100%;
+}

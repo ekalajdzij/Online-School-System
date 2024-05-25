@@ -15,6 +15,9 @@ import { AdminComponent } from './admin/admin.component';
 import { StudentComponent } from './student/student.component';
 import { AnsambleComponent } from './ansamble/ansamble.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LandingPageComponent } from './landingpage/landingpage.component';
+import { DataService } from './services/data.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginpageComponent,
     AdminComponent,
     StudentComponent,
-    AnsambleComponent
+    AnsambleComponent,
+    LandingPageComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

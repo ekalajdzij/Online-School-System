@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../login.service';
-import { jwtDecode } from 'jwt-decode';
+import { AuthService } from '../services/auth.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-loginpage',
@@ -11,8 +11,9 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class LoginpageComponent implements OnInit {
   loginForm! : FormGroup;
+  
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: AuthService, private router: Router, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -43,6 +44,7 @@ export class LoginpageComponent implements OnInit {
     this.loginService.postLogin(data).subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token);
+        this.dataService.setData(res.id);
       
         if (this.loginService.getRoles() === 'Student') {
           this.router.navigate(['student']);
