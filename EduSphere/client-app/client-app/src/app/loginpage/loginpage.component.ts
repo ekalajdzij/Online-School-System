@@ -27,48 +27,51 @@ export class LoginpageComponent implements OnInit {
     });
   }
 
-  
-
-onSubmit(): void {
-  if (this.loginForm.invalid) return;
-
-  const data = {
-    username: this.loginForm.value.username,
-    password: this.loginForm.value.password
-  };
-
-  this.loginService.postLogin(data).subscribe(
-    (res: any) => {
-      localStorage.setItem('token', res.token);
-      
-      if (this.loginService.getRoles() === 'Student') {
-        this.router.navigate(['student']);
-      } 
-      else if (this.loginService.getRoles() === 'Professor' || this.loginService.getRoles() === 'Assistant') {
-        this.router.navigate(['ansamble']);
-      } 
-      else if (this.loginService.getRoles() === 'Admin') {
-        this.router.navigate(['admin']);
-      }
-    },
-    (error: any) => {
-      let errorMessage = 'Unknown error occurred'; // Default message
-
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `${error.error.message}`;
-    } 
-    else if (error.status && error.message) {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    } 
-    else if (error.error && error.error.message) {
-      errorMessage = `${error.error.message}`;
-    } 
-    else if (error.message) {
-      errorMessage = `${error.message}`;
-    }
-
-      alert(errorMessage); // Display the error message in an alert
-      }
-    );
+  navigateToHome(): void {
+    this.router.navigate(['']);
   }
+
+
+  onSubmit(): void {
+    if (this.loginForm.invalid) return;
+
+    const data = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    };
+
+    this.loginService.postLogin(data).subscribe(
+      (res: any) => {
+        localStorage.setItem('token', res.token);
+      
+        if (this.loginService.getRoles() === 'Student') {
+          this.router.navigate(['student']);
+        } 
+        else if (this.loginService.getRoles() === 'Professor' || this.loginService.getRoles() === 'Assistant') {
+          this.router.navigate(['ansamble']);
+        } 
+        else if (this.loginService.getRoles() === 'Admin') {
+          this.router.navigate(['admin']);
+        }
+      },
+      (error: any) => {
+        let errorMessage = 'Unknown error occurred';
+
+      if (error.error instanceof ErrorEvent) {
+        errorMessage = `${error.error.message}`;
+      } 
+      else if (error.status && error.message) {
+        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      } 
+      else if (error.error && error.error.message) {
+        errorMessage = `${error.error.message}`;
+      } 
+      else if (error.message) {
+        errorMessage = `${error.message}`;
+      }
+
+        alert(errorMessage);
+        }
+      );
+    }
 }

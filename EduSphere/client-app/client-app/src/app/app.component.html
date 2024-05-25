@@ -2,12 +2,12 @@
   <router-outlet></router-outlet>
 </div>
 
-<nav *ngIf="!showLoginPage">
-  <div class="heading">HomePage</div>
-  <div class="navbar">
-    <ul>
-      <li>
-        <button (click)="navigateToLogin()" class="login-button">Login</button>
+<nav *ngIf="!showLoginPage" class="navbar navbar-dark bg-primary">
+  <div class="container-fluid d-flex justify-content-between">
+    <div class="heading">HomePage</div>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-white fs-5" (click)="navigateToLogin()">Login</a>
       </li>
     </ul>
   </div>
