@@ -36,7 +36,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var assistants = await _context.Assistants.ToListAsync();
-            if (assistants == null) return NotFound("Assistants not found!");
+            if (assistants == null) return NotFound();
 
             var result = new List<object>();
 
@@ -50,7 +50,7 @@ namespace SchoolSystemAPI.Controllers
                     result.Add(assistantObj);
                 } 
             }
-            if (result.Count == 0) return NotFound("Assistants not found!");
+            if (result.Count == 0) return NotFound();
             else return Ok(result);
         }
 
@@ -63,10 +63,10 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
-            if (user == null) return NotFound("Assistant with the given id Not Found!");
+            if (user == null) return NotFound();
 
             var assistant = await _context.Assistants.FirstOrDefaultAsync(a => a.UserId == id);
-            if (assistant == null) return NotFound("Assistant with the given id Not Found!");
+            if (assistant == null) return NotFound();
 
             var obj = _assistantFactory.CreateAssistant(user, assistant);
             return Ok(obj);

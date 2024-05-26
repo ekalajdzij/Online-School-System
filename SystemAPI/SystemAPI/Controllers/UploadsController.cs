@@ -33,7 +33,7 @@ namespace SchoolSystemAPI.Controllers
 
             if (file == null || file.Length == 0)
             {
-                return BadRequest("File not found!");
+                return BadRequest();
             }
 
             var blobStorage = BlobStorageService.GetInstance(_configuration, _logger);
@@ -47,7 +47,7 @@ namespace SchoolSystemAPI.Controllers
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
-                return NotFound("User not found!");
+                return NotFound();
             }
 
             if (user.IsProfessor == true)
@@ -55,7 +55,7 @@ namespace SchoolSystemAPI.Controllers
                 var originalAssignment = await _context.Assignments.FindAsync(assignmentId);
                 if (originalAssignment == null)
                 {
-                    return NotFound("Assignment not found!");
+                    return NotFound();
                 }
 
                 var assignmentsWithSameName = await _context.Assignments
@@ -74,7 +74,7 @@ namespace SchoolSystemAPI.Controllers
                 var assignment = await _context.Assignments.FindAsync(assignmentId);
                 if (assignment == null)
                 {
-                    return NotFound("Assignment not found!");
+                    return NotFound();
                 }
 
                 assignment.FileAssignment = urlString;
@@ -103,12 +103,12 @@ namespace SchoolSystemAPI.Controllers
             }
             else
             {
-                return BadRequest("Unknown user role!");
+                return BadRequest();
             }
 
             await _context.SaveChangesAsync();
 
-            return Ok("File is uploaded!");
+            return Ok();
         }
 
     }

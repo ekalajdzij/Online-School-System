@@ -46,7 +46,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
-            if (course == null) return NotFound($"The course with the given {id} does not exist!");
+            if (course == null) return NotFound();
             
             return Ok(course);
         }
@@ -90,7 +90,7 @@ namespace SchoolSystemAPI.Controllers
             var existingCourse = await _context.Courses.FindAsync(id);
             if (existingCourse == null)
             {
-                return NotFound("Course not found.");
+                return NotFound();
             }
 
             if (course.Name != null) existingCourse.Name = course.Name;
@@ -115,7 +115,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var course = await _context.Courses.FindAsync(id);
-            if (course == null) return NotFound("Course not found!");
+            if (course == null) return NotFound();
 
             var materials = _context.Materials.Where(m => m.CourseId == id).ToList();
             if (materials.Any())
@@ -127,7 +127,7 @@ namespace SchoolSystemAPI.Controllers
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
 
-            return Ok($"Course with the id {id} deleted successfully!");
+            return Ok();
         }
     }
 }

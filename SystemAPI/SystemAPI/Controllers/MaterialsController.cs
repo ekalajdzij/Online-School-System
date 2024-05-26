@@ -44,7 +44,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var material = await _context.Materials.FirstOrDefaultAsync(m => m.Id == id);
-            if (material == null) return NotFound($"The material with the given {id} does not exist!");
+            if (material == null) return NotFound();
 
             return Ok(material);
         }
@@ -58,7 +58,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var existingMaterial = await _context.Materials.FirstOrDefaultAsync(m => m.Id == id);
-            if (existingMaterial == null) return NotFound("Material does not exist!");
+            if (existingMaterial == null) return NotFound();
 
             existingMaterial.Name = material.Name;
             _context.Materials.Update(existingMaterial);
@@ -97,12 +97,12 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var material = await _context.Materials.FindAsync(id);
-            if (material == null) return NotFound("Material not found!");
+            if (material == null) return NotFound();
 
             _context.Materials.Remove(material);
             await _context.SaveChangesAsync();
 
-            return Ok($"Material with the given id {id} deleted successfully!");
+            return Ok();
         }
     }
 }

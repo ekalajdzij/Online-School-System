@@ -36,7 +36,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var students = await _context.Students.ToListAsync();
-            if (students == null) return NotFound("Students not found!");
+            if (students == null) return NotFound();
 
             var groupedStudents = students.GroupBy(s => s.UserId)
                                   .Select(g => g.First())
@@ -52,7 +52,7 @@ namespace SchoolSystemAPI.Controllers
                     result.Add(studentObj);
                 }
             }
-            if (result.Count == 0) return NotFound("Students not found!");
+            if (result.Count == 0) return NotFound();
             else return Ok(result);
         }
 
@@ -65,10 +65,10 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == id);
-            if (student == null) return NotFound("Student with the given id Not Found!");
+            if (student == null) return NotFound();
 
             var user = await _context.Users.FindAsync(student.UserId);
-            if (user == null) return NotFound("Student with the given id Not Found!");
+            if (user == null) return NotFound();
 
             var obj = _studentFactory.CreateStudent(user, student);
             return Ok(obj);
@@ -83,14 +83,14 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == studentId);
-            if (student == null) return NotFound("Student with the given id Not Found!");
+            if (student == null) return NotFound();
 
             var course = await _context.Courses.FirstOrDefaultAsync(c => c.Id == courseId);
-            if (course == null) return NotFound("Course with the given id Not Found!");
+            if (course == null) return NotFound();
 
             if (student.CourseId == courseId)
             {
-                return Conflict("Student is already enrolled in the course!");
+                return Conflict();
             }
             var studentTemp = new Student();
             studentTemp.StudyYear = student.StudyYear;
@@ -99,7 +99,7 @@ namespace SchoolSystemAPI.Controllers
             _context.Add(studentTemp);
             _context.SaveChanges();
 
-            return Ok("Student enrolled in course successfully!");
+            return Ok();
         }
 
         [HttpPut("profile")]
@@ -111,7 +111,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var student = await _context.Users.FirstOrDefaultAsync(u => u.Id == studentId);
-            if (student == null) return NotFound("Student not found!");
+            if (student == null) return NotFound();
             if (payload.Username != null) student.Username = payload.Username;
             if (payload.Password != null)
             {

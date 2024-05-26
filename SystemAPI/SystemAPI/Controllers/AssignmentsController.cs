@@ -55,7 +55,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var assignment = await _context.Assignments.FirstOrDefaultAsync(a => a.Id == id);
-            if (assignment == null) return NotFound("Assignment not found!");
+            if (assignment == null) return NotFound();
 
             return Ok(assignment);
         }
@@ -109,7 +109,7 @@ namespace SchoolSystemAPI.Controllers
             _context.Assignments.AddRange(assignments);
             await _context.SaveChangesAsync();
 
-            return Ok("Assignment created successfully!");
+            return Ok();
         }
 
         [HttpPut("{id}")]
@@ -128,7 +128,7 @@ namespace SchoolSystemAPI.Controllers
             var assignment = await _context.Assignments.FirstOrDefaultAsync(a => a.Id == id);
             if (assignment == null)
             {
-                return NotFound("Assignment not found!");
+                return NotFound();
             }
 
             var assignmentsToUpdate = await _context.Assignments
@@ -145,7 +145,7 @@ namespace SchoolSystemAPI.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return Ok("Assignments updated successfully!");
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -159,7 +159,7 @@ namespace SchoolSystemAPI.Controllers
             var assignment = await _context.Assignments.FindAsync(id);
             if (assignment == null)
             {
-                return NotFound("Assignment not found!");
+                return NotFound();
             }
 
             var submissionsToDelete = await _context.Submissions
@@ -172,7 +172,7 @@ namespace SchoolSystemAPI.Controllers
             _context.Assignments.Remove(assignment);
             await _context.SaveChangesAsync();
 
-            return Ok("Assignment and associated submissions deleted successfully!");
+            return Ok();
         }
 
         [HttpGet("submissions/{id}")]

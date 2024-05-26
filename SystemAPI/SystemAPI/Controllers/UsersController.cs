@@ -131,7 +131,7 @@ namespace SchoolSystemAPI.Controllers
 
         [HttpPost]
         [Authorize(Policy = "Admin")]
-        public async Task<IActionResult> CreateUser(AdminUserUpdateRequest payload)
+        public async Task<IActionResult> CreateUser(UserCreateRequest payload)
         {
             var issuer = _configuration.GetSection("Jwt:Issuer").Value;
             var key = _configuration.GetSection("Jwt:Key").Value;
@@ -154,15 +154,15 @@ namespace SchoolSystemAPI.Controllers
 
             if (user.IsProfessor == true)
             {
-                _context.Professors.Add(new Professor { UserId = user.Id });
+                _context.Professors.Add(new Professor { UserId = user.Id, Title = payload.Title ?? "no title" });
             }
             else if (user.IsAssistant == true)
             {
-                _context.Assistants.Add(new Assistant { UserId = user.Id });
+                _context.Assistants.Add(new Assistant { UserId = user.Id, Title = payload.Title ?? "no title", StudyYear = payload.StudyYear ?? 0 });
             }
             else if (user.IsStudent == true)
             {
-                _context.Students.Add(new Student { UserId = user.Id });
+                _context.Students.Add(new Student { UserId = user.Id, StudyYear = payload.StudyYear ?? 0 });
             }
 
             await _context.SaveChangesAsync();

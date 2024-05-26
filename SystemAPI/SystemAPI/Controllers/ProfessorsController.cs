@@ -34,7 +34,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var professors = await _context.Professors.ToListAsync();
-            if (professors == null) return NotFound("Professors not found!");
+            if (professors == null) return NotFound();
 
             var result = new List<object>();
 
@@ -47,7 +47,7 @@ namespace SchoolSystemAPI.Controllers
                     result.Add(professorObj);
                 }
             }
-            if (result.Count == 0) return NotFound("Professors not found!");
+            if (result.Count == 0) return NotFound();
             else return Ok(result);
         }
 
@@ -60,10 +60,10 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);
-            if (user == null) return NotFound("Professor with the given id Not Found!");
+            if (user == null) return NotFound();
 
             var professor = await _context.Professors.FirstOrDefaultAsync(p => p.UserId == id);
-            if (professor == null) return NotFound("Professor with the given id Not Found!");
+            if (professor == null) return NotFound();
 
             var obj = _professorFactory.CreateProfessor(user, professor);
             return Ok(obj);
@@ -78,7 +78,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var professor = await _context.Users.FirstOrDefaultAsync(u => u.Id == professorId);
-            if (professor == null) return NotFound("Professor not found!");
+            if (professor == null) return NotFound();
             if (payload.Username != null) professor.Username = payload.Username;
             if (payload.Password != null)
             {

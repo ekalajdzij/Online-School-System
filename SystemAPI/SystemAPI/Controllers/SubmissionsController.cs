@@ -43,7 +43,7 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var submission = await _context.Submissions.FirstOrDefaultAsync(s => s.Id == id);
-            if (submission == null) return NotFound("Submission not found!");
+            if (submission == null) return NotFound();
             return Ok(submission);
         }
 
@@ -69,7 +69,7 @@ namespace SchoolSystemAPI.Controllers
              var key = _configuration.GetSection("Jwt:Key").Value;
              AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
-            if (!ModelState.IsValid) return BadRequest("Invalid model state!");
+            if (!ModelState.IsValid) return BadRequest();
 
             var newSubmission = new Submission
             {
@@ -81,7 +81,7 @@ namespace SchoolSystemAPI.Controllers
             await _context.Submissions.AddAsync(newSubmission);
             await _context.SaveChangesAsync();
 
-            return Ok("Submission created successfully!");
+            return Ok();
         }
 
         [HttpPut("student/{id}")]
@@ -92,16 +92,16 @@ namespace SchoolSystemAPI.Controllers
             var key = _configuration.GetSection("Jwt:Key").Value;
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
-            if (!ModelState.IsValid) return BadRequest("Invalid model state!");
+            if (!ModelState.IsValid) return BadRequest();
             var submission = await _context.Submissions.FirstOrDefaultAsync(s => s.Id == id);
-            if (submission == null) return NotFound("Submission not found!");
+            if (submission == null) return NotFound();
 
             submission.FileSubmission = payload.FileSubmission ?? submission.FileSubmission;
 
             _context.Update(submission);
             await _context.SaveChangesAsync();
 
-            return Ok("Submission updated successfully!");
+            return Ok();
         }
 
         [HttpPut("ansamble/{id}")]
@@ -112,9 +112,9 @@ namespace SchoolSystemAPI.Controllers
             var key = _configuration.GetSection("Jwt:Key").Value;
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
-            if (!ModelState.IsValid) return BadRequest("Invalid model state!");
+            if (!ModelState.IsValid) return BadRequest();
             var submission = await _context.Submissions.FirstOrDefaultAsync(s => s.Id == id);
-            if (submission == null) return NotFound("Submission not found!");
+            if (submission == null) return NotFound();
 
             submission.Grade = payload.Grade ?? submission.Grade;
             submission.Comment = payload.Comment ?? submission.Comment;
@@ -123,7 +123,7 @@ namespace SchoolSystemAPI.Controllers
             _context.Update(submission);
             await _context.SaveChangesAsync();
 
-            return Ok("Submission updated successfully!");
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -135,12 +135,12 @@ namespace SchoolSystemAPI.Controllers
             AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
             var submission = await _context.Submissions.FindAsync(id);
-            if (submission == null) return NotFound("Submission not found!");
+            if (submission == null) return NotFound();
 
             _context.Submissions.Remove(submission);
             await _context.SaveChangesAsync();
 
-            return Ok("Submission deleted successfully!");
+            return Ok();
         }
     }
 }
