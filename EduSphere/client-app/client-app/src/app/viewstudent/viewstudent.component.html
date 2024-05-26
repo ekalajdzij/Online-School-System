@@ -1,0 +1,56 @@
+<div class="container-l">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4><b>Manage Students</b></h4>
+          </div>
+          <div class="col-sm-6">
+            <button class="btn btn-success" (click)="postStudent()">
+              <i class='fas fa-plus-circle'></i><span> ADD</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover table-bordered table-content">
+        <thead>
+          <tr class="center-align">
+            <th>Name</th>
+            <th>Username</th>
+            <th>Mail</th>
+            <th>Study year</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of studentList" class="center-align">
+            <ng-container *ngIf="editingStudent?.id !== student.id">
+              <td>{{ student.name }}</td>
+              <td>{{ student.username }}</td>
+              <td>{{ student.mail }}</td>
+              <td>{{ student.studyYear }}</td>
+              <td>
+                <a href="#" (click)="startEdit(student)" class="btn"><i class="fa fa-edit edit"></i></a>
+                <button type="button" (click)="openDeleteModal(student.id)" class="btn" title="Delete"><i class='fas fa-trash-alt delete'></i></button>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="editingStudent?.id === student.id">
+              <td>{{ student.name }}</td>
+              <td><input [(ngModel)]="editingStudent.username" class="form-control" /></td>
+              <td>{{ student.mail }}</td>
+              <td>{{ student.studyYear }}</td>
+              <td>
+                <button (click)="saveStudent()" class="btn btn-success"><i class='fas fa-save'></i></button>
+                <button (click)="cancelEdit()" class="btn btn-secondary"><i class='fas fa-times'></i></button>
+              </td>
+            </ng-container>
+          </tr>
+          <tr *ngIf="studentList.length == 0">
+            <td colspan="6" class="no-courses">No Students Found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

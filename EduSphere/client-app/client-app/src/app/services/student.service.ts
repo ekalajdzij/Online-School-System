@@ -5,50 +5,50 @@ import { Observable, catchError, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class StudentService {
 
-  private apiUrl = 'https://schoolsystemedusphereapi.azurewebsites.net/api/Users'
+  private apiUrl = 'https://schoolsystemedusphereapi.azurewebsites.net/api/Students';
+
   constructor(private http: HttpClient) { }
 
-  getUserById(id: number):Observable<any> {
+  getAllStudents(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<any>(`${this.apiUrl}/${id}`, {headers})
-    .pipe(catchError(this.errorHandler));
+    return this.http.get<any>(`${this.apiUrl}/all`, { headers })
+      .pipe(catchError(this.errorHandler));
   }
 
-  updateUser(id: number, data: any): Observable<any> {
+  getStudentById(id: number): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.put<any>(`${this.apiUrl}/${id}`, data, {headers})
-    .pipe(catchError(this.errorHandler));
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers })
+      .pipe(catchError(this.errorHandler));
   }
 
-  deleteUser(id: number): Observable<any> {
+  enrollStudent(studentId: number, courseId: number): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.delete<any>(`${this.apiUrl}/${id}`, {headers})
-    .pipe(catchError(this.errorHandler));
+    return this.http.put<any>(`${this.apiUrl}/enroll?studentId=${studentId}&courseId=${courseId}`, {}, { headers })
+      .pipe(catchError(this.errorHandler));
   }
 
-  postUser(data: any): Observable<any> {
+  updateStudentProfile(studentId: number, data: any): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post<any>(`${this.apiUrl}`, data, {headers})
-    .pipe(catchError(this.errorHandler));
+    return this.http.put<any>(`${this.apiUrl}/profile?studentId=${studentId}`, data, { headers })
+      .pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse) {
     console.log(error);
     return throwError(() => new Error(error.error));
   }
-
 }

@@ -1,0 +1,60 @@
+<div class="container-l">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>Manage Assistants</b></h4>
+            </div>
+            <div class="col-sm-6">
+              <button class="btn btn-success" (click)="postAssistant()">
+                <i class='fas fa-plus-circle'></i><span> ADD</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered table-content">
+          <thead>
+            <tr class="center-align">
+              <th>Name</th>
+              <th>Username</th>
+              <th>Mail</th>
+              <th>Study year</th>
+              <th>Title</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let assistant of assistantList" class="center-align">
+              <ng-container *ngIf="editingAssistant?.id !== assistant.id">
+                <td>{{ assistant.name }}</td>
+                <td>{{ assistant.username }}</td>
+                <td>{{ assistant.mail }}</td>
+                <td>{{ assistant.studyYear }}</td>
+                <td>{{ assistant.title }}</td>
+                <td>
+                  <a href="#" (click)="startEdit(assistant)" class="btn"><i class="fa fa-edit edit"></i></a>
+                  <button type="button" (click)="openDeleteModal(assistant.id)" class="btn" title="Delete"><i class='fas fa-trash-alt delete'></i></button>
+                </td>
+              </ng-container>
+              <ng-container *ngIf="editingAssistant?.id === assistant.id">
+                <td>{{ assistant.name }}</td>
+                <td><input [(ngModel)]="editingAssistant.username" class="form-control" /></td>
+                <td>{{ assistant.mail }}</td>
+                <td>{{ assistant.studyYear }}</td>
+                <td>{{ assistant.title }}</td>
+                <td>
+                  <button (click)="saveAssistant()" class="btn btn-success"><i class='fas fa-save'></i></button>
+                  <button (click)="cancelEdit()" class="btn btn-secondary"><i class='fas fa-times'></i></button>
+                </td>
+              </ng-container>
+            </tr>
+            <tr *ngIf="assistantList.length == 0">
+              <td colspan="6" class="no-courses">No Assistants Found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

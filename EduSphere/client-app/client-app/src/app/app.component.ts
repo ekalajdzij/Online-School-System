@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if (event.url === '/addcourse') { // Zamijeni sa rutom tvoje komponente
+        if (event.url === '/addcourse' || event.url==='/addstudent' || event.url === '/addassistant' || event.url === '/addprofessor') { // Zamijeni sa rutom tvoje komponente
           document.body.style.backgroundColor = '#f0f8ff'; // Postavi željenu boju pozadine
         } else {
           // Resetuj boju pozadine ako nije ruta za tvoju komponentu

@@ -1,0 +1,27 @@
+<div class="add-professor-form">
+    <h2>Add Professor</h2>
+    <form (submit)="addProfessor()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="professor.name" name="name" required (focus)="nameInputClicked = true" (blur)="nameInputClicked = false">
+      <div *ngIf="nameInputClicked && !professor.name" class="error-message">Name is required</div>
+  
+      <label for="username">Username:</label>
+      <input type="text" id="username" [(ngModel)]="professor.username" name="username" required (focus)="usernameInputClicked = true" (blur)="usernameInputClicked = false">
+      <div *ngIf="usernameInputClicked && !professor.username" class="error-message">Username is required</div>
+  
+      <label for="password">Password:</label>
+      <input type="text" id="password" [(ngModel)]="professor.password" name="password" required (focus)="passwordInputClicked = true" (blur)="passwordInputClicked = false">
+      <div *ngIf="passwordInputClicked && !professor.password" class="error-message">Password is required</div>
+  
+      <label for="mail">Mail:</label>
+      <input type="text" id="mail" [(ngModel)]="professor.mail" name="mail" required (focus)="mailInputClicked = true" (blur)="mailInputClicked = false">
+      <div *ngIf="mailInputClicked && !professor.mail" class="error-message">Mail is required</div>
+  
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="professor.title" name="title" required (focus)="titleInputClicked = true" (blur)="titleInputClicked = false">
+      <div *ngIf="titleInputClicked && !professor.title" class="error-message">Title is required</div>
+  
+      <button type="submit">Add Professor</button>
+    </form>
+  </div>
+  

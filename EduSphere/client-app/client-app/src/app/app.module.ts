@@ -12,7 +12,7 @@ import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
-import { StudentComponent } from './student/student.component';
+import { ViewStudentComponent } from './viewstudent/viewstudent.component';
 import { AnsambleComponent } from './ansamble/ansamble.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from './landingpage/landingpage.component';
@@ -22,18 +22,30 @@ import { ViewCourseComponent } from './viewcourse/viewcourse.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { AddStudentComponent } from './add-student/add-student.component';
+import { AddProfessorComponent } from './add-professor/add-professor.component';
+import { AddAssistantComponent } from './add-assistant/add-assistant.component';
+import { StudentComponent } from './student/student.component';
+import { ViewAssistantComponent } from './viewassistant/viewassistant.component';
+import { ViewProfessorComponent } from './viewprofessor/viewprofessor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginpageComponent,
     AdminComponent,
-    StudentComponent,
+    ViewStudentComponent,
     AnsambleComponent,
     LandingPageComponent,
     SidebarComponent,
     ViewCourseComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    AddStudentComponent,
+    AddProfessorComponent,
+    AddAssistantComponent,
+    StudentComponent,
+    ViewAssistantComponent,
+    ViewProfessorComponent
   ],
   imports: [
     BrowserModule,

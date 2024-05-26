@@ -1,0 +1,57 @@
+<div class="container-l">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>Manage Professors</b></h4>
+            </div>
+            <div class="col-sm-6">
+              <button class="btn btn-success" (click)="postProfessor()">
+                <i class='fas fa-plus-circle'></i><span> ADD</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered table-content">
+          <thead>
+            <tr class="center-align">
+              <th>Name</th>
+              <th>Username</th>
+              <th>Mail</th>
+              <th>Title</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let professor of professorList" class="center-align">
+              <ng-container *ngIf="editingProfessor?.id !== professor.id">
+                <td>{{ professor.name }}</td>
+                <td>{{ professor.username }}</td>
+                <td>{{ professor.mail }}</td>
+                <td>{{ professor.title }}</td>
+                <td>
+                  <a href="#" (click)="startEdit(professor)" class="btn"><i class="fa fa-edit edit"></i></a>
+                  <button type="button" (click)="openDeleteModal(professor.id)" class="btn" title="Delete"><i class='fas fa-trash-alt delete'></i></button>
+                </td>
+              </ng-container>
+              <ng-container *ngIf="editingProfessor?.id === professor.id">
+                <td>{{ professor.name }}</td>
+                <td><input [(ngModel)]="editingProfessor.username" class="form-control" /></td>
+                <td>{{ professor.mail }}</td>
+                <td>{{ professor.title }}</td>
+                <td>
+                  <button (click)="saveProfessor()" class="btn btn-success"><i class='fas fa-save'></i></button>
+                  <button (click)="cancelEdit()" class="btn btn-secondary"><i class='fas fa-times'></i></button>
+                </td>
+              </ng-container>
+            </tr>
+            <tr *ngIf="professorList.length == 0">
+              <td colspan="5" class="no-courses">No Professors Found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

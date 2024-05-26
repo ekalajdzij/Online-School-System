@@ -1,9 +1,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
 
-:host {
-  background-color: aliceblue  !important;
-}
-.add-course-form {
+.add-student-form {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -12,19 +9,19 @@
     border-radius: 8px;
   }
   
-  .add-course-form h2 {
+  .add-student-form h2 {
     text-align: center;
     margin-bottom: 20px;
   }
   
-  .add-course-form label {
+  .add-student-form label {
     display: block;
     margin-bottom: 5px;
   }
   
-  .add-course-form input[type="text"],
-  .add-course-form textarea,
-  .add-course-form select {
+  .add-student-form input[type="text"],
+  .add-student-form textarea,
+  .add-student-form select {
     width: 100%;
     padding: 10px 20px;
     margin-bottom: 10px;
@@ -32,7 +29,7 @@
     border-radius: 4px;
   }
   
-  .add-course-form button[type="submit"] {
+  .add-student-form button[type="submit"] {
     display: block; /* Da bude prikazano kao blok element */
     margin: 0 auto; /* Centriranje horizontalno */
     background-color: #0074D9;
@@ -44,7 +41,7 @@
     cursor: pointer;
   }
   
-  .add-course-form button[type="submit"]:hover {
+  .add-student-form button[type="submit"]:hover {
     background-color: #0056b3;
   }
   .error-message {

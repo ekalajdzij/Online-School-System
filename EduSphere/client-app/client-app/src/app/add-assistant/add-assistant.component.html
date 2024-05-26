@@ -1,0 +1,31 @@
+<div class="add-assistant-form">
+    <h2>Add Assistant</h2>
+    <form (submit)="addAssistant()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="assistant.name" name="name" required (focus)="nameInputClicked = true" (blur)="nameInputClicked = false">
+      <div *ngIf="nameInputClicked && !assistant.name" class="error-message">Name is required</div>
+  
+      <label for="overview">Username:</label>
+      <input type="text" id="username" [(ngModel)]="assistant.username" name="username" required (focus)="usernameInputClicked = true" (blur)="usernameInputClicked = false">
+      <div *ngIf="usernameInputClicked && !assistant.username" class="error-message">Username is required</div>
+  
+      <label for="summary">Password:</label>
+      <input type="text" id="password" [(ngModel)]="assistant.password" name="password" required (focus)="passwordInputClicked = true" (blur)="passwordInputClicked = false">
+      <div *ngIf="passwordInputClicked && !assistant.password" class="error-message">Password is required</div>
+
+      <label for="summary">Mail:</label>
+      <input type="text" id="mail" [(ngModel)]="assistant.mail" name="mail" required (focus)="mailInputClicked = true" (blur)="mailInputClicked = false">
+      <div *ngIf="mailInputClicked && !assistant.mail" class="error-message">Mail is required</div>
+      
+      <label for="summary">Study year:</label>
+      <input type="text" id="studyYear" [(ngModel)]="assistant.studyYear" name="studyYear" required (focus)="studyYearInputClicked = true" (blur)="studyYearInputClicked = false">
+      <div *ngIf="studyYearInputClicked && !assistant.studyYear" class="error-message">Study year is required</div>
+
+      <label for="summary">Title:</label>
+      <input type="text" id="title" [(ngModel)]="assistant.title" name="title" required (focus)="titleInputClicked = true" (blur)="titleInputClicked = false">
+      <div *ngIf="titleInputClicked && !assistant.title" class="error-message">Title is required</div>
+    
+      <button type="submit">Add Assistant</button>
+    </form>
+  </div>
+  

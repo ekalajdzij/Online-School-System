@@ -1,0 +1,27 @@
+<div class="add-student-form">
+    <h2>Add Student</h2>
+    <form (submit)="addStudent()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="student.name" name="name" required (focus)="nameInputClicked = true" (blur)="nameInputClicked = false">
+      <div *ngIf="nameInputClicked && !student.name" class="error-message">Name is required</div>
+  
+      <label for="overview">Username:</label>
+      <input type="text" id="username" [(ngModel)]="student.username" name="username" required (focus)="usernameInputClicked = true" (blur)="usernameInputClicked = false">
+      <div *ngIf="usernameInputClicked && !student.username" class="error-message">Username is required</div>
+  
+      <label for="summary">Password:</label>
+      <input type="text" id="password" [(ngModel)]="student.password" name="password" required (focus)="passwordInputClicked = true" (blur)="passwordInputClicked = false">
+      <div *ngIf="passwordInputClicked && !student.password" class="error-message">Password is required</div>
+
+      <label for="summary">Mail:</label>
+      <input type="text" id="mail" [(ngModel)]="student.mail" name="mail" required (focus)="mailInputClicked = true" (blur)="mailInputClicked = false">
+      <div *ngIf="mailInputClicked && !student.mail" class="error-message">Mail is required</div>
+      
+      <label for="summary">Study year:</label>
+      <input type="text" id="studyYear" [(ngModel)]="student.studyYear" name="studyYear" required (focus)="studyYearInputClicked = true" (blur)="studyYearInputClicked = false">
+      <div *ngIf="studyYearInputClicked && !student.studyYear" class="error-message">Study year is required</div>
+    
+      <button type="submit">Add Student</button>
+    </form>
+  </div>
+  

@@ -154,15 +154,13 @@ export class ViewCourseComponent implements OnInit {
     this.courseService.deleteCourse(id).pipe(
       tap(() => {
         this.toastr.success('Course deleted successfully', 'Success');
-        this.courseList = this.courseList.filter((course : any) => course.id !== id);
+        this.router.navigate(['admin']);
       }),
       catchError(error => {
         this.toastr.error('Failed to delete course', 'Error');
-        console.error(error);
         return of(null);
       })
     ).subscribe(() => {
-      this.dataService.setDataOption('Courses');
     });
   }
 
@@ -171,6 +169,7 @@ export class ViewCourseComponent implements OnInit {
     modalRef.result.then(
       (result) => {
         if (result === 'delete') {
+          this.dataService.setDataOption('Courses');
           this.deleteCourse(id);
         }
       },

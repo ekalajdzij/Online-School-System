@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnDestroy, OnInit {
+export class AdminComponent implements OnInit {
   id: number = 0;
   private subscription: Subscription;
   username : string = '';
@@ -26,10 +26,6 @@ export class AdminComponent implements OnDestroy, OnInit {
       )
       .subscribe();
   }  
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 
   ngOnInit() {
     this.dataService.setData(this.id); 
