@@ -29,6 +29,8 @@ export class AddProfessorComponent implements OnInit {
     if (this.professor.name && this.professor.username && this.professor.password && this.professor.mail && this.professor.title) {
       this.professor.isProfessor = true;
       this.professor.isAdmin = false;
+      this.professor.isAssistant = false;
+      this.professor.isStudent = false;
       this.userService.postUser(this.professor).subscribe(data => {
         this.professor = data;
         console.log(data);

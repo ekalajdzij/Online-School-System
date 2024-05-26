@@ -28,10 +28,10 @@ export class AddAssistantComponent implements OnInit {
 
   addAssistant() {
     this.assistantFormSubmitted = true; 
-    if (this.assistant.name && this.assistant.username && this.assistant.password && this.assistant.mail && this.assistant.studyYear && this.assistant.Title) {
+    if (this.assistant.name && this.assistant.username && this.assistant.password && this.assistant.mail && this.assistant.studyYear && this.assistant.title) {
       this.assistant.isAssistant = true;
       this.assistant.isAdmin = false;
-      this.assistant.isAssistant = false;
+      this.assistant.isStudent = false;
       this.assistant.isProfessor = false;
       this.userService.postUser(this.assistant).subscribe(data => {
         this.assistant = data;

@@ -38,12 +38,14 @@ export class UserService {
   }
 
   postUser(data: any): Observable<any> {
+    console.log("Pozvan post user")
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
     });
-    return this.http.post<any>(`${this.apiUrl}`, data, {headers})
-    .pipe(catchError(this.errorHandler));
+    return this.http.post<any>(`${this.apiUrl}`, data, { headers, observe: 'response' })
+      .pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse) {
