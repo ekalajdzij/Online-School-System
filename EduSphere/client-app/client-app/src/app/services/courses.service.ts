@@ -48,7 +48,7 @@ export class CourseService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post<any>(this.apiUrl, data, {headers})
+    return this.http.post<any>(`${this.apiUrl}/course`, data, {headers})
     .pipe(catchError(this.errorHandler));
   }
   errorHandler(error: HttpErrorResponse) {

@@ -1,0 +1,30 @@
+<div class="add-course-form">
+  <h2>Add Course</h2>
+  <form (submit)="addCourse()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" [(ngModel)]="course.name" name="name" required (focus)="nameInputClicked = true" (blur)="nameInputClicked = false">
+    <div *ngIf="nameInputClicked && !course.name" class="error-message">Name is required</div>
+
+    <label for="overview">Overview:</label>
+    <textarea id="overview" [(ngModel)]="course.overview" name="overview" required (focus)="overviewInputClicked = true" (blur)="overviewInputClicked = false"></textarea>
+    <div *ngIf="overviewInputClicked && !course.overview" class="error-message">Overview is required</div>
+
+    <label for="summary">Summary:</label>
+    <textarea id="summary" [(ngModel)]="course.summary" name="summary" required (focus)="summaryInputClicked = true" (blur)="summaryInputClicked = false"></textarea>
+    <div *ngIf="summaryInputClicked && !course.summary" class="error-message">Summary is required</div>
+
+    <label for="professor">Professor:</label>
+    <select [(ngModel)]="course.professorId" name="professor" required (focus)="professorInputClicked = true" (blur)="professorInputClicked = false">
+      <option *ngFor="let professor of professors" [value]="professor.id">{{ professor.title }} {{ professor.name }}</option>
+    </select>
+    <div *ngIf="professorInputClicked && !course.professorId" class="error-message">Professor is required</div>
+
+    <label for="assistant">Assistant:</label>
+    <select [(ngModel)]="course.assistantId" name="assistant" required (focus)="assistantInputClicked = true" (blur)="assistantInputClicked = false">
+      <option *ngFor="let assistant of assistants" [value]="assistant.id">{{ assistant.title }} {{ assistant.name }}</option>
+    </select>
+    <div *ngIf="assistantInputClicked && !course.assistantId" class="error-message">Assistant is required</div>
+
+    <button type="submit">Add Course</button>
+  </form>
+</div>

@@ -2,7 +2,7 @@
     height: 100vh;
     display: flex;
     width: 250px;
-    background-color: #0d6efd;
+    background-color: #0d6efd !important;
     box-sizing: border-box;
     position: fixed;
     flex-direction: column;
@@ -19,7 +19,7 @@
     display: flex;
     margin-top: 5px;
     align-items: center;
-    margin-left:60px;
+    margin-left: 45px;
 
     svg {
         width: 30px;
@@ -52,7 +52,7 @@
 
     .menu-title {
         font-size: 32px;
-        margin-left:25px;
+        margin-left: 25px;
         color: white;
         font-weight: bold;
     }
@@ -61,14 +61,21 @@
 .sidebar-link {
     align-self: center;
     text-decoration: none;
+    border: #0d6efd;
 
     .sidebar-item {
         width: 180px;
         height: 40px;
-        background-color: transparent;
+        background-color: #0d6efd;
         display: flex;
         align-items: center;
         border-radius: 8px;
+         /* Uklonite granice */
+        border: none !important;
+        /* Uklonite vanjski okvir */
+        outline: none !important;
+        /* Uklonite sjenu */
+        box-shadow: none !important;
 
         svg {
             margin-left: 10px;
@@ -87,6 +94,7 @@
         background-color: #0d6efd;
     }
 }
+
 .sidebar-content {
     display: flex;
     align-items: center;
@@ -117,4 +125,11 @@
     bottom: 10px;
     left: 10px;
     width: 100%;
+}
+
+/* Dodajte ovo na kraj vašeg CSS koda */
+.sidebar-item {
+    outline: none !important; /* Uklanja vanjski okvir oko elementa */
+    box-shadow: none !important; /* Uklanja sjenu oko elementa */
+    border: none !important; /* Uklanja granice oko elementa */
 }

@@ -21,6 +21,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewCourseComponent } from './viewcourse/viewcourse.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ToastrModule } from 'ngx-toastr';
     AnsambleComponent,
     LandingPageComponent,
     SidebarComponent,
-    ViewCourseComponent
+    ViewCourseComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

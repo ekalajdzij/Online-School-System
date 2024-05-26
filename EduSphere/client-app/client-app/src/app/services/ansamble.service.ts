@@ -17,7 +17,7 @@ export class AnsambleService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<any>(`${this.apiAssUrl}/all}`, {headers})
+    return this.http.get<any>(`${this.apiAssUrl}/all`, {headers})
     .pipe(catchError(this.errorHandler));
   }
   getAssistantById(id:number): Observable<any> {
@@ -41,7 +41,7 @@ export class AnsambleService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<any>(this.apiProfUrl, {headers})
+    return this.http.get<any>(`${this.apiProfUrl}/all`, {headers})
     .pipe(catchError(this.errorHandler));
   }
   getProfessorById(id:number): Observable<any> {

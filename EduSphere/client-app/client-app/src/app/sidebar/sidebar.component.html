@@ -3,7 +3,7 @@
   </div>
   
   <div class="logo-container">
-    <p><br>username</p>
+    <p><br>{{ username }}</p>
   </div>
   
   <div class="menu">
@@ -41,27 +41,28 @@
       </ng-container>
   
       <ng-container *ngIf="userRole === 'Admin'">
-        <a [routerLink]="'/courses'" routerLinkActive="active" href="" class="sidebar-link">
+        <button class="sidebar-link" (click)="selectOption('Courses')" style="background-color: #0d6efd;">
           <div class="sidebar-item">
             <p>Courses</p>
           </div>
-        </a>
-        <a [routerLink]="'/professors'" routerLinkActive="active" href="" class="sidebar-link">
+        </button>
+        <button class="sidebar-link" (click)="selectOption('Professors')" style="background-color: #0d6efd;">
           <div class="sidebar-item">
             <p>Professors</p>
           </div>
-        </a>
-        <a [routerLink]="'/assistants'" routerLinkActive="active" href="" class="sidebar-link">
+        </button>
+        <button class="sidebar-link" (click)="selectOption('Assistants')" style="background-color: #0d6efd;">
           <div class="sidebar-item">
             <p>Assistants</p>
           </div>
-        </a>
-        <a [routerLink]="'/students'" routerLinkActive="active" href="" class="sidebar-link">
+        </button>
+        <button class="sidebar-link" (click)="selectOption('Students')" style="background-color: #0d6efd;">
           <div class="sidebar-item">
             <p>Students</p>
           </div>
-        </a>
+        </button>
       </ng-container>
+      
   
       <!-- Add more role-based menus as needed -->
     </nav>
