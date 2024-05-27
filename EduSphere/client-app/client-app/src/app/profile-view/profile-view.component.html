@@ -1,0 +1,87 @@
+<div *ngIf="role === 'Student'" class="profile-container">
+  <div class="profile-header">
+    <img src="https://www.svgrepo.com/show/335611/profile-default.svg" alt="Avatar" class="profile-avatar">
+    <h2>{{ user.username }}</h2>
+  </div>
+  <div class="profile-content">
+    <h3>About</h3>
+    <div class="profile-details">
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Study Year:</strong> {{ studyYear }}</p>
+    </div>
+    <h3>Contact</h3>
+    <div class="profile-contact">
+      <p><strong>Email:</strong> {{ user.mail }}</p>
+    </div>
+  </div>
+  <div class="profile-edit">
+    <h3>Edit profile</h3>
+    <form (submit)="saveChanges()">
+      <label>Enter your new username</label>
+      <input type="text" [(ngModel)]="editUsername" name="editUsername">
+      <label>Enter your new password</label>
+      <input type="password" [(ngModel)]="editPassword" name="editPassword">
+      <button type="submit">Save changes</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="role === 'Professor'" class="profile-container">
+  <div class="profile-header">
+    <img src="https://www.svgrepo.com/show/335611/profile-default.svg" alt="Avatar" class="profile-avatar">
+    <h2>{{ user.username }}</h2>
+  </div>
+  <div class="profile-content">
+    <h3>About</h3>
+    <div class="profile-details">
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Title:</strong> {{ user.title }}</p>
+    </div>
+    <h3>Contact</h3>
+    <div class="profile-contact">
+      <p><strong>Email:</strong> {{ user.mail }}</p>
+    </div>
+  </div>
+  <div class="profile-edit">
+    <h3>Edit profile</h3>
+    <form (submit)="saveChanges()">
+      <label>Enter your new username</label>
+      <input type="text" [(ngModel)]="editUsername" name="editUsername">
+      <label>Enter your new password</label>
+      <input type="password" [(ngModel)]="editPassword" name="editPassword">
+      <button type="submit">Save changes</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="role === 'Assistant'" class="profile-container">
+  <div class="profile-header">
+    <img src="https://www.svgrepo.com/show/335611/profile-default.svg" alt="Avatar" class="profile-avatar">
+    <h2>{{ user.username }}</h2>
+  </div>
+  <div class="profile-content">
+    <h3>About</h3>
+    <div class="profile-details">
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Study Year:</strong> {{ studyYear }}</p>
+      <p><strong>Title:</strong> {{ user.title }}</p>
+    </div>
+    <h3>Contact</h3>
+    <div class="profile-contact">
+      <p><strong>Email:</strong> {{ user.mail }}</p>
+    </div>
+  </div>
+  <div class="profile-edit">
+    <h3>Edit profile</h3>
+    <form (submit)="saveChanges()">
+      <label>Enter your new username</label>
+      <input type="text" [(ngModel)]="editUsername" name="editUsername">
+      <label>Enter your new password</label>
+      <input type="password" [(ngModel)]="editPassword" name="editPassword">
+      <button type="submit">Save changes</button>
+    </form>
+  </div>
+</div>

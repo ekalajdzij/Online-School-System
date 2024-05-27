@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.userService.getUserById(this.id).subscribe((res: any) => {
       console.log(res);
       this.username = res.username;
+      localStorage.setItem('id', res.id);
       localStorage.setItem('username', res.username);
     });
     this.userRole = roles !== null ? roles : undefined;

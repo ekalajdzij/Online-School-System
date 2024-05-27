@@ -28,6 +28,9 @@ import { AddAssistantComponent } from './add-assistant/add-assistant.component';
 import { StudentComponent } from './student/student.component';
 import { ViewAssistantComponent } from './viewassistant/viewassistant.component';
 import { ViewProfessorComponent } from './viewprofessor/viewprofessor.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { AllCoursesViewComponent } from './all-courses-view/all-courses-view.component';
+import { ViewCourseInfoComponent } from './view-course-info/view-course-info.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { ViewProfessorComponent } from './viewprofessor/viewprofessor.component'
     AddAssistantComponent,
     StudentComponent,
     ViewAssistantComponent,
-    ViewProfessorComponent
+    ViewProfessorComponent,
+    ProfileViewComponent,
+    AllCoursesViewComponent,
+    ViewCourseInfoComponent
   ],
   imports: [
     BrowserModule,

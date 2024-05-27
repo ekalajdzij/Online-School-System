@@ -43,16 +43,20 @@ export class LoginpageComponent implements OnInit {
 
     this.loginService.postLogin(data).subscribe(
       (res: any) => {
+        const roles = this.loginService.getRoles();
+
         localStorage.setItem('token', res.token);
+        if (roles != null) localStorage.setItem('role', roles);
+        localStorage.setItem('id', res.id);
         this.dataService.setData(res.id);
-      
-        if (this.loginService.getRoles() === 'Student') {
+
+        if (roles === 'Student') {
           this.router.navigate(['student']);
         } 
-        else if (this.loginService.getRoles() === 'Professor' || this.loginService.getRoles() === 'Assistant') {
+        else if (roles === 'Professor' || roles === 'Assistant') {
           this.router.navigate(['ansamble']);
         } 
-        else if (this.loginService.getRoles() === 'Admin') {
+        else if (roles === 'Admin') {
           this.router.navigate(['admin']);
         }
       },

@@ -12,6 +12,9 @@ import { StudentComponent } from './student/student.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { AddAssistantComponent } from './add-assistant/add-assistant.component';
 import { AddProfessorComponent } from './add-professor/add-professor.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ViewCourseInfoComponent } from './view-course-info/view-course-info.component';
+import { AllCoursesViewComponent } from './all-courses-view/all-courses-view.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -24,7 +27,10 @@ export const routes: Routes = [
   { path: 'addcourse', component: AddCourseComponent },
   { path: 'addstudent', component: AddStudentComponent },
   { path: 'addassistant', component: AddAssistantComponent },
-  { path: 'addprofessor', component: AddProfessorComponent }
+  { path: 'addprofessor', component: AddProfessorComponent },
+  { path: 'profile', component: ProfileViewComponent },
+  { path: 'viewcourseinfo', component: ViewCourseInfoComponent },
+  { path: 'allcoursesview', component: AllCoursesViewComponent }
 
 ];
 

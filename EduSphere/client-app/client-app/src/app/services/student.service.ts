@@ -21,6 +21,7 @@ export class StudentService {
   }
 
   getStudentById(id: number): Observable<any> {
+    console.log("pozvao studenta get by id")
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -39,6 +40,8 @@ export class StudentService {
   }
 
   updateStudentProfile(studentId: number, data: any): Observable<any> {
+    console.log("pozvao studenta update")
+    console.log(data.username + data.password); 
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
