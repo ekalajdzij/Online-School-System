@@ -15,6 +15,7 @@ export class ProfileViewComponent implements OnInit {
   editUsername: string = '';
   editPassword: string = '';
   studyYear : any;
+  title : any;
   
 
   constructor(private studentService : StudentService, private ansambleService : AnsambleService) {}
@@ -30,15 +31,16 @@ export class ProfileViewComponent implements OnInit {
         this.user = res;
         this.studyYear = res.studyYear;
       });
-    } else if (this.role == 'Professor') {
+    } if (this.role == 'Professor') {
         this.ansambleService.getProfessorById(this.id).subscribe((res: any) => {
           this.user = res;
-          this.studyYear = res.studyYear;
+          this.title = res.title;
         });
-    } else if (this.role == 'Assistant') {
+    } if (this.role == 'Assistant') {
         this.ansambleService.getAssistantById(this.id).subscribe((res: any) => {
           this.user = res;
           this.studyYear = res.studyYear;
+          this.title = res.title;
         });
     }
   }
@@ -53,20 +55,20 @@ export class ProfileViewComponent implements OnInit {
     if (this.role == 'Student') {
       this.studentService.updateStudentProfile(this.id, this.user).subscribe((res: any) => {
         this.user = res;
-        this.editUsername = ''; // Očisti editUsername
-        this.editPassword = ''; // Očisti editPassword
+        this.editUsername = '';
+        this.editPassword = '';
       });
     } else if (this.role == 'Professor') {
       this.ansambleService.updateProfessor(this.id, this.user).subscribe((res: any) => {
         this.user = res;
-        this.editUsername = ''; // Očisti editUsername
-        this.editPassword = ''; // Očisti editPassword
+        this.editUsername = '';
+        this.editPassword = '';
       });
     } else if (this.role == 'Assistant') {
       this.ansambleService.updateAssistant(this.id, this.user).subscribe((res: any) => {
         this.user = res;
-        this.editUsername = ''; // Očisti editUsername
-        this.editPassword = ''; // Očisti editPassword
+        this.editUsername = '';
+        this.editPassword = '';
       });
     }
   }

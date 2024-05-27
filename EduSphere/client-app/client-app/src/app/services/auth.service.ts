@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,15 @@ export class AuthService {
 
   postLogin(data: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, data)
-    .pipe(catchError(this.errorHandler));
+      .pipe(
+        map((response: { token: any; }) => {
+          const token = response.token;
+          const decodedToken: any = jwtDecode(token);
+          const roles = decodedToken.role || null;
+          return { ...response, roles };
+        }),
+        catchError(this.errorHandler)
+      );
   }
 
   errorHandler(error: HttpErrorResponse) {

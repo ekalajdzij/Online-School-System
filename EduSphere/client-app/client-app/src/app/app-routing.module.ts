@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
-import { AnsambleComponent } from './ansamble/ansamble.component';
 import { ViewStudentComponent } from './viewstudent/viewstudent.component';
 import { LandingPageComponent } from './landingpage/landingpage.component';
 import { AddCourseComponent } from './add-course/add-course.component';
@@ -15,13 +14,16 @@ import { AddProfessorComponent } from './add-professor/add-professor.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { ViewCourseInfoComponent } from './view-course-info/view-course-info.component';
 import { AllCoursesViewComponent } from './all-courses-view/all-courses-view.component';
+import { ProfessorComponent } from './professor/professor.component';
+import { AssistantComponent } from './assistant/assistant.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginpageComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'student', component: StudentComponent },
-  { path: 'ansamble', component: AnsambleComponent },
+  { path: 'professor', component: ProfessorComponent },
+  { path: 'assistant', component: AssistantComponent },
   { path: 'viewcourses', component: ViewCourseComponent },
   { path: 'viewstudents', component: ViewStudentComponent },
   { path: 'addcourse', component: AddCourseComponent },
@@ -29,7 +31,7 @@ export const routes: Routes = [
   { path: 'addassistant', component: AddAssistantComponent },
   { path: 'addprofessor', component: AddProfessorComponent },
   { path: 'profile', component: ProfileViewComponent },
-  { path: 'viewcourseinfo', component: ViewCourseInfoComponent },
+  { path: 'viewcourseinfo/:id', component: ViewCourseInfoComponent },
   { path: 'allcoursesview', component: AllCoursesViewComponent }
 
 ];

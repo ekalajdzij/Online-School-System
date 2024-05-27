@@ -67,7 +67,7 @@ export class AnsambleService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.put<any>(`${this.apiAssUrl}/profile?assistantId=${professorId}`, data, { headers }).pipe(
+    return this.http.put<any>(`${this.apiProfUrl}/profile?professorId=${professorId}`, data, { headers }).pipe(
       catchError(this.errorHandler)
     );
   }

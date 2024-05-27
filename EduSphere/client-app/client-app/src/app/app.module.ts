@@ -13,7 +13,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { ViewStudentComponent } from './viewstudent/viewstudent.component';
-import { AnsambleComponent } from './ansamble/ansamble.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from './landingpage/landingpage.component';
 import { DataService } from './services/data.service';
@@ -31,6 +30,9 @@ import { ViewProfessorComponent } from './viewprofessor/viewprofessor.component'
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { AllCoursesViewComponent } from './all-courses-view/all-courses-view.component';
 import { ViewCourseInfoComponent } from './view-course-info/view-course-info.component';
+import { MyCoursesComponent } from './my-courses/my-courses.component';
+import { ProfessorComponent } from './professor/professor.component';
+import { AssistantComponent } from './assistant/assistant.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,6 @@ import { ViewCourseInfoComponent } from './view-course-info/view-course-info.com
     LoginpageComponent,
     AdminComponent,
     ViewStudentComponent,
-    AnsambleComponent,
     LandingPageComponent,
     SidebarComponent,
     ViewCourseComponent,
@@ -51,7 +52,10 @@ import { ViewCourseInfoComponent } from './view-course-info/view-course-info.com
     ViewProfessorComponent,
     ProfileViewComponent,
     AllCoursesViewComponent,
-    ViewCourseInfoComponent
+    ViewCourseInfoComponent,
+    MyCoursesComponent,
+    ProfessorComponent,
+    AssistantComponent
   ],
   imports: [
     BrowserModule,

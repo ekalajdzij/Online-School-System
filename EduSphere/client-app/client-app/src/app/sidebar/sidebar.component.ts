@@ -11,37 +11,24 @@ import { tap } from 'rxjs/operators';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit {
   userRole: string | undefined;
   id: number = 0;
   username: any = localStorage.getItem('username') || undefined;
-  private subscription: Subscription;
   selectedOption: string = '';
 
 
   constructor(private router: Router, private authService: AuthService, private userService: UserService, private dataService: DataService) {
-    this.subscription = this.dataService.data$
-    .pipe(
-      tap((data : number) => {
-        this.id = data;
-      })
-    )
-    .subscribe();
   }
 
   ngOnInit() {
-    const roles = this.authService.getRoles();
     this.userService.getUserById(this.id).subscribe((res: any) => {
       console.log(res);
       this.username = res.username;
       localStorage.setItem('id', res.id);
       localStorage.setItem('username', res.username);
     });
-    this.userRole = roles !== null ? roles : undefined;
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.userRole = localStorage.getItem('role') ?? undefined;
   }
 
   selectOption(option: string) {
@@ -51,6 +38,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
-    localStorage.removeItem('username');
+    localStorage.clear();
   }
 }
