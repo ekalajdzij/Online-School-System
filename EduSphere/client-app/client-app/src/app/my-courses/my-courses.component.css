@@ -1,0 +1,63 @@
+/* Postavite flex kontejner za app-sidebar i app-all-course-view */
+:host {
+    display: flex;
+  }
+  
+  /* Ne mijenjajte veličinu app-sidebar, koristite svoju prirodnu veličinu */
+  app-sidebar {
+    flex: 0 0 auto;
+  }
+  
+  /* Zauzmite preostali prostor za app-all-course-view */
+  app-all-courses-view {
+    flex: 1;
+  }
+  
+  .available-courses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 20%
+  }
+  
+  .course-cards {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .course-card {
+    background-color: aliceblue;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid aliceblue;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .course-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .course-card button {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+  }
+  
+  .course-card button:hover {
+    background-color: #0056b3;
+  }
+  

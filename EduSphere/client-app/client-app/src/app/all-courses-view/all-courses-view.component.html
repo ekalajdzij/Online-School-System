@@ -1,0 +1,12 @@
+<div class="available-courses">
+    <h2>Available Courses</h2>
+    <div class="course-cards">
+      <div *ngFor="let course of courses" class="course-card">
+        <img src="https://learning.unv.org/theme/image.php/mb2aofk/theme/1710338530/course-default" alt="Course Image">
+        <h3>{{ course.name }}</h3>
+        <p>{{ course.summary }}</p>
+        <button (click)="viewCourse(course.id)">View</button>
+      </div>
+    </div>
+  </div>
+  

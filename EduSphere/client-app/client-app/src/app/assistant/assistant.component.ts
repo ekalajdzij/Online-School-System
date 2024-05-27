@@ -6,14 +6,14 @@ import { tap } from 'rxjs/operators';
 
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrl: './student.component.css'
+  selector: 'app-assistant',
+  templateUrl: './assistant.component.html',
+  styleUrl: './assistant.component.css'
 })
-export class StudentComponent implements OnInit {
+export class AssistantComponent {
   id: number = 0;
   private subscription: Subscription;
-  username : string = '';
+  username : any;
   showCourses: boolean = false;
   option: string = '';
 
@@ -31,5 +31,4 @@ export class StudentComponent implements OnInit {
   ngOnInit() {
     this.dataService.setData(this.id); 
   }
-
 }

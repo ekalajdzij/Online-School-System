@@ -1,16 +1,14 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Subscription, tap } from 'rxjs';
 import { DataService } from '../services/data.service';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
-
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrl: './student.component.css'
+  selector: 'app-professor',
+  templateUrl: './professor.component.html',
+  styleUrl: './professor.component.css'
 })
-export class StudentComponent implements OnInit {
+export class ProfessorComponent {
   id: number = 0;
   private subscription: Subscription;
   username : string = '';
@@ -29,7 +27,9 @@ export class StudentComponent implements OnInit {
   }  
 
   ngOnInit() {
-    this.dataService.setData(this.id); 
-  }
+    this.dataService.setData(this.id);
+    console.log("id dobijen u professor komp je " + this.id);
+    console.log("opcija dobijen u professor komp je " + this.option);
 
+  }
 }

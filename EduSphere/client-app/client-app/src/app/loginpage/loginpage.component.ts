@@ -10,8 +10,8 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./loginpage.component.css']
 })
 export class LoginpageComponent implements OnInit {
-  loginForm! : FormGroup;
-  
+  loginForm!: FormGroup;
+  isLoading = false; // Add this line
 
   constructor(private loginService: AuthService, private router: Router, private dataService: DataService) {}
 
@@ -32,9 +32,10 @@ export class LoginpageComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-
   onSubmit(): void {
     if (this.loginForm.invalid) return;
+
+    this.isLoading = true;
 
     const data = {
       username: this.loginForm.value.username,
@@ -44,36 +45,40 @@ export class LoginpageComponent implements OnInit {
     this.loginService.postLogin(data).subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('role', res.roles);
+        localStorage.setItem('id', res.id);
+        localStorage.setItem('username', this.loginForm.value.username);
         this.dataService.setData(res.id);
-      
-        if (this.loginService.getRoles() === 'Student') {
+
+        this.isLoading = false;
+
+        if (res.roles === 'Student') {
           this.router.navigate(['student']);
-        } 
-        else if (this.loginService.getRoles() === 'Professor' || this.loginService.getRoles() === 'Assistant') {
-          this.router.navigate(['ansamble']);
-        } 
-        else if (this.loginService.getRoles() === 'Admin') {
+        } else if (res.roles === 'Professor') {
+          this.router.navigate(['professor']);
+        } else if (res.roles === 'Assistant') {
+          this.router.navigate(['assistant']);
+        } else if (res.roles === 'Admin') {
           this.router.navigate(['admin']);
         }
       },
       (error: any) => {
         let errorMessage = 'Unknown error occurred';
 
-      if (error.error instanceof ErrorEvent) {
-        errorMessage = `${error.error.message}`;
-      } 
-      else if (error.status && error.message) {
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      } 
-      else if (error.error && error.error.message) {
-        errorMessage = `${error.error.message}`;
-      } 
-      else if (error.message) {
-        errorMessage = `${error.message}`;
-      }
-
-        alert(errorMessage);
+        if (error.error instanceof ErrorEvent) {
+          errorMessage = `${error.error.message}`;
+        } else if (error.status && error.message) {
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        } else if (error.error && error.error.message) {
+          errorMessage = `${error.error.message}`;
+        } else if (error.message) {
+          errorMessage = `${error.message}`;
         }
-      );
-    }
+
+        this.isLoading = false;
+        alert(errorMessage);
+      }
+    );
+  }
 }
+

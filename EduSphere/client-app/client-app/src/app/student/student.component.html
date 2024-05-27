@@ -1,1 +1,4 @@
-<p>student works!</p>
+<app-sidebar></app-sidebar>
+<app-profile-view *ngIf="option == 'Profile'"></app-profile-view>
+<app-all-courses-view *ngIf="option == 'Courses'"></app-all-courses-view>
+<app-my-courses *ngIf="option == 'My Courses'"></app-my-courses>
