@@ -124,7 +124,22 @@ namespace SchoolSystemAPI.Controllers
             return Ok(student);
         }
 
+        [HttpPut("unenroll")]
+        [Authorize(Policy = "StudentOrAdmin")]
+        public async Task<IActionResult> UnEnroll(int studentId, int courseId)
+        {
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
 
+            var student = await _context.Students.FirstOrDefaultAsync((s => s.UserId == studentId && s.CourseId == courseId));
+            if (student == null) return NotFound();
+        
+            student.CourseId = null;
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync();
 
+            return Ok(student);
+        }
     }
 }
