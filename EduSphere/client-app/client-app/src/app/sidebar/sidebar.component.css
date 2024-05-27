@@ -61,7 +61,7 @@
 .sidebar-link {
     align-self: center;
     text-decoration: none;
-    border: #0d6efd;
+    border: none;
 
     .sidebar-item {
         width: 180px;

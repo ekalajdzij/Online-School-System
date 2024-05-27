@@ -16,6 +16,9 @@ import { ViewCourseInfoComponent } from './view-course-info/view-course-info.com
 import { AllCoursesViewComponent } from './all-courses-view/all-courses-view.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { AssistantComponent } from './assistant/assistant.component';
+import { AssignmentComponent } from './assignment/assignment.component';
+import { SubmissionService } from './services/submission.service';
+import { SubmissionComponent } from './submission/submission.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -32,7 +35,9 @@ export const routes: Routes = [
   { path: 'addprofessor', component: AddProfessorComponent },
   { path: 'profile', component: ProfileViewComponent },
   { path: 'viewcourseinfo/:id', component: ViewCourseInfoComponent },
-  { path: 'allcoursesview', component: AllCoursesViewComponent }
+  { path: 'allcoursesview', component: AllCoursesViewComponent },
+  { path: 'assignment/:id', component: AssignmentComponent },
+  { path: 'submission/:id', component: SubmissionComponent }
 
 ];
 

@@ -65,7 +65,7 @@ export class SubmissionService {
       .pipe(catchError(this.errorHandler));
   }
 
-  updateAnsamble(id: number, data: any): Observable<any> {
+  updateSubmissonAnsamble(id: number, data: any): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`

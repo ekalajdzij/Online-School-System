@@ -11,10 +11,19 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if (event.url === '/addcourse' || event.url==='/addstudent' || event.url === '/addassistant' || event.url === '/addprofessor') { // Zamijeni sa rutom tvoje komponente
-          document.body.style.backgroundColor = '#f0f8ff'; // Postavi željenu boju pozadine
-        } else {
-          // Resetuj boju pozadine ako nije ruta za tvoju komponentu
+        if (
+          event.url === '/addcourse' ||
+          event.url === '/addstudent' ||
+          event.url === '/addassistant' ||
+          event.url === '/addprofessor' ||
+          event.url === '/viewcourseinfo' ||
+          event.url === '/login'
+        ) {
+          document.body.style.backgroundColor = '#f0f8ff';
+        } else if (event.url.startsWith('/viewcourseinfo/') || event.url.startsWith('/assignment/') || event.url.startsWith('/submission/')) {
+          document.body.style.backgroundColor = 'darkslategrey';
+        }
+        else {
           document.body.style.backgroundColor = '';
         }
       }

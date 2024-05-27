@@ -1,1 +1,40 @@
-<p>view-course-info works!</p>
+<div class="course-overview">
+  <header>
+    <h1>{{ course?.name }}</h1>
+    <button *ngIf="role == 'Student'" (click)="toggleEnrollment()">{{ isEnrolled ? 'Unenroll me' : 'Enroll me' }}</button>
+  </header>
+  <hr>
+  <div class="content">
+    <div class="about-course">
+      <h3>About this course</h3>
+      <p>{{ course?.overview}}</p>
+    </div>
+    <div class="key-information">
+      <h3>Key information</h3>
+      <p>Professor: {{ course?.professorName }}</p>
+      <p>Assistant: {{ course?.assistantName }}</p>
+      <div class="materials">
+        <h3>Materials</h3>
+        <p *ngFor="let material of materials">{{ material.name }}</p>
+        <div *ngIf="role == 'Professor'">
+          <h3>Add New Material</h3>
+          <input type="text" [(ngModel)]="newMaterialName" placeholder="Material Name">
+          <button class="add-material" (click)="addMaterial(newMaterialName)">Add Material</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="assignments">
+    <h3>Assignments</h3>
+    <div *ngFor="let assignment of assignments" (click)="navigateToAssignment(assignment.id)">
+      <p>{{ assignment.name }}</p>
+    </div>
+  </div>
+
+  <div class="submissions" *ngIf="role != 'Student'">
+    <h3>Submissions</h3>
+    <div *ngFor="let submission of allSubmissions" (click)="navigateToSubmission(submission.id)">
+      <p>{{ submission.assignmentName }}</p>
+    </div>
+  </div>
+</div>

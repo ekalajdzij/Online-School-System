@@ -33,6 +33,8 @@ import { ViewCourseInfoComponent } from './view-course-info/view-course-info.com
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { AssistantComponent } from './assistant/assistant.component';
+import { AssignmentComponent } from './assignment/assignment.component';
+import { SubmissionComponent } from './submission/submission.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { AssistantComponent } from './assistant/assistant.component';
     ViewCourseInfoComponent,
     MyCoursesComponent,
     ProfessorComponent,
-    AssistantComponent
+    AssistantComponent,
+    AssignmentComponent,
+    SubmissionComponent
   ],
   imports: [
     BrowserModule,

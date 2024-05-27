@@ -1,0 +1,53 @@
+/* Stilizacija input polja */
+.assignment-details {
+    background-color: cadetblue;
+    border: 1px solid cadetblue;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15% auto;
+    max-width: 600px; /* Smanjena širina */
+    color: white;
+}
+.assignment-details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.assignment-details h3 {
+    margin: 0;
+}
+.assignment-details a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+}
+.assignment-details a:hover {
+    background-color: #0056b3; /* Tamnoplava boja za hover */
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.assignment-details button {
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.assignment-details button:hover {
+    background-color: darkcyan;
+}
+.assignment-details .form-group {
+    margin-bottom: 15px;
+}
+.assignment-details label {
+    font-weight: bold;
+}
+.assignment-details input[type="text"],
+.assignment-details textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid cadetblue;
+    border-radius: 5px;
+}

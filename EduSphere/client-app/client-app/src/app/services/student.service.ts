@@ -39,6 +39,15 @@ export class StudentService {
       .pipe(catchError(this.errorHandler));
   }
 
+  unenrollStudent(studentId: number, courseId: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put<any>(`${this.apiUrl}/unenroll?studentId=${studentId}&courseId=${courseId}`, {}, { headers })
+      .pipe(catchError(this.errorHandler));
+  }
+
   updateStudentProfile(studentId: number, data: any): Observable<any> {
     console.log("pozvao studenta update")
     console.log(data.username + data.password); 

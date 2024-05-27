@@ -1,0 +1,8 @@
+<div class="assignment-details" *ngIf="assignment">
+    <h1>{{ assignment.name }}</h1>
+    <h3 *ngIf="!deadlinePassed(assignment.deadline)">Deadline: {{ assignment.deadline | date }}</h3>
+    <h3 *ngIf="deadlinePassed(assignment.deadline)">Deadline passed: {{ assignment.deadline | date }}</h3>
+    <a [href]="assignment.fileAssignment" target="_blank">Assignment File</a>
+    <button *ngIf="canUpload" (click)="fileInput.click()">Upload File</button>
+    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+</div>
