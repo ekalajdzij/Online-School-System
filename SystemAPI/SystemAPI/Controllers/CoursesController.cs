@@ -129,5 +129,62 @@ namespace SchoolSystemAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet("student")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
+        public async Task<IActionResult> GetCoursesForStudent(int id)
+        {
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
+
+            var student = await _context.Students
+                .Where(s => s.UserId == id)
+                .ToListAsync();
+            if (student == null) return NotFound();
+            var courses = new List<Course>();
+            foreach (var s in student)
+            {
+                var courseId = s.CourseId;
+                var course = await _context.Courses
+                    .Where(c => c.Id == courseId)
+                    .FirstOrDefaultAsync();
+                if (course != null) courses.Add(course);
+            }
+
+            return Ok(courses);
+        }
+
+        [HttpGet("professor")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
+        public async Task<IActionResult> GetCoursesForProfessor(int professorId)
+        {
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
+
+            var courses = await _context.Courses.
+                Where(c => c.ProfessorId == professorId)
+                .ToListAsync(); 
+            if (courses == null) return NotFound();
+
+            return Ok(courses);
+        }
+
+        [HttpGet("assistant")]
+        [Authorize(Policy = "ProfessorOrAssistantOrStudentOrAdmin")]
+        public async Task<IActionResult> GetCoursesForAssistant(int assistantId)
+        {
+            var issuer = _configuration.GetSection("Jwt:Issuer").Value;
+            var key = _configuration.GetSection("Jwt:Key").Value;
+            AuthService.ExtendJwtTokenExpirationTime(HttpContext, issuer, key);
+
+            var courses = await _context.Courses.
+                Where(c => c.AssistantId == assistantId)
+                .ToListAsync();
+            if (courses == null) return NotFound();
+
+            return Ok(courses);
+        }
     }
 }
