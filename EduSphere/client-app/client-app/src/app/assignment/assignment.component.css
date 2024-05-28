@@ -1,6 +1,6 @@
 .assignment-details {
-    background-color: cadetblue;
-    border: 1px solid cadetblue;
+    background-color: aliceblue;
+    border: 1px solid aliceblue;
     border-radius: 8px;
     padding: 20px;
     margin: 15% auto;
@@ -8,13 +8,13 @@
   }
   
   .assignment-details h1 {
-    color: white;
+    color: black;
     font-size: 24px;
     margin-bottom: 10px;
   }
 
   .assignment-details h3 {
-    color: white;
+    color: black;
   }
   
   .assignment-details .professor,
@@ -31,20 +31,20 @@
     display: block;
     margin-top: 10px;
     text-decoration: none;
-    color: white;
+    color: black;
     border-radius: 5px;
     padding: 5px 10px;
     width: fit-content;
   }
   
   .assignment-details a:hover {
-    background-color: cadetblue;
+    background-color: aliceblue;
   }
   
   .assignment-details button {
-    background-color: cadetblue;
+    background-color: aliceblue;
     border: none;
-    color: white;
+    color: black;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;

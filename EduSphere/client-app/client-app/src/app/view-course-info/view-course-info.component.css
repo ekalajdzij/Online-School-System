@@ -1,6 +1,6 @@
 :host {
   background-color: azure;
-  color: darkcyan;
+  color: black;
 }
 
 .course-overview {
@@ -20,7 +20,7 @@ header h1 {
 }
 
 header button {
-  background-color: cadetblue;
+  background-color: aliceblue;
   border: none;
   padding: 10px 20px;
   font-size: 14px;
@@ -80,8 +80,8 @@ h3 {
 }
 
 .key-information button {
-  background-color: darkcyan;
-  color: white;
+  background-color: aliceblue;
+  color: black;
   padding: 10px 20px;
   font-size: 14px;
   cursor: pointer;
@@ -91,8 +91,8 @@ h3 {
 }
 
 .key-information input {
-  background-color: whitesmoke;
-  color: darkcyan;
+  background-color: aliceblue;
+  color: black;
   padding: 10px 20px;
   font-size: 14px;
   cursor: pointer;

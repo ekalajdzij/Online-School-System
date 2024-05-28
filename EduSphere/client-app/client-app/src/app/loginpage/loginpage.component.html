@@ -29,6 +29,8 @@
   <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || isLoading">OK</button>
 </form>
 
-<div *ngIf="isLoading" class="spinner-border text-primary" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div *ngIf="isLoading" class="spinner-container">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
 </div>

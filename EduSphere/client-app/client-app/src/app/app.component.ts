@@ -20,8 +20,11 @@ export class AppComponent {
           event.url === '/login'
         ) {
           document.body.style.backgroundColor = '#f0f8ff';
-        } else if (event.url.startsWith('/viewcourseinfo/') || event.url.startsWith('/assignment/') || event.url.startsWith('/submission/')) {
-          document.body.style.backgroundColor = 'darkslategrey';
+        } else if (event.url.startsWith('/viewcourseinfo/')) {
+          document.body.style.backgroundColor = 'white';
+        } else if (event.url.startsWith('/assignment/') || event.url.startsWith('/submission/')) {
+          document.body.style.backgroundColor = 'lightsteelblue';
+        
         }
         else {
           document.body.style.backgroundColor = '';

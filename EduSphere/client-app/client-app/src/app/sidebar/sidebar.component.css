@@ -114,12 +114,6 @@
     color: white;
 }
 
-.active {
-    .sidebar-item {
-        background-color: #2a944d;
-    }
-}
-
 #logout-link {
     position: absolute;
     bottom: 10px;
@@ -127,9 +121,18 @@
     width: 100%;
 }
 
-/* Dodajte ovo na kraj vašeg CSS koda */
-.sidebar-item {
-    outline: none !important; /* Uklanja vanjski okvir oko elementa */
-    box-shadow: none !important; /* Uklanja sjenu oko elementa */
-    border: none !important; /* Uklanja granice oko elementa */
-}
+.sidebar-link:focus,
+  .sidebar-link:active,
+  .sidebar-link:visited {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  .sidebar-item:focus,
+  .sidebar-item:active,
+  .sidebar-item:visited {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
