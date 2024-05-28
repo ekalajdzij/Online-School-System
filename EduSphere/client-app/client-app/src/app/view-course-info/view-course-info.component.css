@@ -1,122 +1,124 @@
 :host {
-    background-color: azure;
-    color: darkcyan;
+  background-color: azure;
+  color: darkcyan;
 }
+
 .course-overview {
-    padding: 20px;
-    margin: 4%;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  header h1 {
-    margin: 0;
-    font-size: 40px;
-  }
-  
-  header button {
-    background-color: cadetblue;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  
-  header button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  hr {
-    border: 0;
-    height: 1px;
-    background: aliceblue;
-    margin: 10px 0;
-  }
-  
-  .content {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .about-course,
-  .key-information,
-  .assignments,
-  .submissions {
-    margin-bottom: 20px;
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid aliceblue;
-    background-color: aliceblue;
-    width: auto;
-  }
-  
-  .about-course h3,
-  .key-information h3 {
-    margin-top: 10px;
-  }
-  .about-course {
-    width: 45%;
-  }
-  h1 {
+  padding: 20px;
+  margin: 4%;
+}
 
-    font-size: 24px;
-  }
-  
-  h3 {
-    margin-top: 10px;
-  }
-  
-  .key-information .materials {
-    margin-top: 10px;
-  }
-  .key-information button {
-    background-color: darkcyan;
-    color: white;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 8px;
-    border: none;
-    margin-left: 10px;
-  } 
-  .key-information input {
-    background-color: whitesmoke;
-    color: darkcyan;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    margin-left: 10px;
-  }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  
-  .assignments,
-  .submissions {
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  
-  .assignments div,
-  .submissions div {
-    padding: 10px;
-    border-bottom: 1px solid aliceblue;
-    cursor: pointer;
-  }
-  
-  .assignments div:last-child,
-  .submissions div:last-child {
-    border-bottom: none;
-  }
-  
-  .assignments div:hover,
-  .submissions div:hover {
-    background-color: aliceblue;
-  }
-  
-  
+header h1 {
+  margin: 0;
+  font-size: 40px;
+}
+
+header button {
+  background-color: cadetblue;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+header button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: aliceblue;
+  margin: 10px 0;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20%;
+}
+
+.about-course,
+.key-information {
+  width: 40%;
+}
+
+.about-course,
+.key-information,
+.assignments,
+.submissions {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid aliceblue;
+  background-color: aliceblue;
+}
+
+.about-course h3,
+.key-information h3 {
+  margin-top: 10px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h3 {
+  margin-top: 10px;
+}
+
+.key-information .materials {
+  margin-top: 10px;
+}
+
+.key-information button {
+  background-color: darkcyan;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  margin-left: 10px;
+}
+
+.key-information input {
+  background-color: whitesmoke;
+  color: darkcyan;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  margin-left: 10px;
+}
+
+.assignments,
+.submissions {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.assignments div,
+.submissions div {
+  padding: 10px;
+  border-bottom: 1px solid aliceblue;
+  cursor: pointer;
+}
+
+.assignments div:last-child,
+.submissions div:last-child {
+  border-bottom: none;
+}
+
+.assignments div:hover,
+.submissions div:hover {
+  background-color: aliceblue;
+}
