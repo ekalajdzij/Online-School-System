@@ -1,12 +1,15 @@
 <div class="assignment-details">
     <h1>{{ assignment.name }}</h1>
     <h3>{{ student.name }}</h3>
-    <h3>{{ submission.grade }}</h3>
-    <h3>{{ submission.comment }}</h3>
-    <a href="#" (click)="downloadSubmission()">Submission File</a>
+    <h3 *ngIf="role != 'Student'">{{ submission.grade }}</h3>
+    <h3 *ngIf="role == 'Student' && submission.grade != null">{{ submission.grade }}</h3>
+    <h3 *ngIf="role == 'Student' && submission.grade == null">Not graded yet</h3>
+    <h3 *ngIf="role != 'Student'">{{ submission.comment }}</h3>
+    <h3 *ngIf="role == 'Student' && submission.grade != null">Comment: {{ submission.comment }}</h3>
+    <a *ngIf="role != 'Student'" href="#" (click)="downloadSubmission()">Submission File</a>
     
     <!-- Opcija za davanje ocjene i komentara -->
-    <div *ngIf="canUpload">
+    <div *ngIf="canUpload && role != 'Student'">
       <div class="form-group">
         <label for="grade">Grade:</label>
         <input id="grade" type="text" [(ngModel)]="submission.grade" class="form-control" placeholder="Grade">

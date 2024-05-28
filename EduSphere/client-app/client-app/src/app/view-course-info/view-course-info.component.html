@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class="submissions" *ngIf="role != 'Student'">
+  <div class="submissions">
     <h3>Submissions</h3>
     <div *ngFor="let submission of allSubmissions" (click)="navigateToSubmission(submission.id)">
       <p>{{ submission.assignmentName }}</p>
